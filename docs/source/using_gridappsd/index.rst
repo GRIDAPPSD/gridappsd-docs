@@ -13,11 +13,11 @@ Applications and services can use either publish/subscribe mechanism or Python A
 
 Publish/Subscribe mechanism can be implemented using any of the language bindings for ActiveMQ messaging framework.
 
-Python API wraps the publish/subscribe messaging and makes the interaction easier for Python apps/services. 
-For more information on Python API and how to use it, look at  https://github.com/GRIDAPPSD/gridappsd-python and 
-https://github.com/GRIDAPPSD/gridappsd-sample-app. 
+Python API wraps the publish/subscribe messaging and makes the interaction easier for Python apps/services.
+For more information on Python API and how to use it, look at  https://github.com/GRIDAPPSD/gridappsd-python and
+https://github.com/GRIDAPPSD/gridappsd-sample-app.
 
-Following sections describe the messaging APIs and the corresponding Python API function to interact with platform. 
+Following sections describe the messaging APIs and the corresponding Python API function to interact with platform.
 Where no Python API function is mentioned, following generic functions can be used.
 
 ::
@@ -51,3 +51,8 @@ Hosting Application or Service
 ------------------------------
 
 .. include:: Developing_Apps.rst
+
+Test Manager
+------------------------------
+
+.. include:: test_manager.rst
