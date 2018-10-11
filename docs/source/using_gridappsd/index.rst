@@ -6,6 +6,11 @@ Using GridAPPS-D
 
 .. include:: rc1_overview.rst
 
+Uploading Model into Blazegraph
+-------------------------------
+
+.. include:: Uploading_model_using_blazegraph_workbench.rst
+
 Using Platform API
 ------------------
 
