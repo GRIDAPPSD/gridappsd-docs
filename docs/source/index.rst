@@ -12,7 +12,7 @@ GridAPPS-D's Documentation
    overview/index
    installing_gridappsd/index
    using_gridappsd/index
-   system_configuration/index
+   system_confguration/index
    developer_resources/index
    data_model/index
    hosted_applications/index

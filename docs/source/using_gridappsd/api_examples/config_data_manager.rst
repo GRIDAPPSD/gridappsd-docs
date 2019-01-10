@@ -1,6 +1,6 @@
 
 Request all GridLAB-D configuration files
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates all configuration files necessary to run a sumulation using the GridLAB-D simulator.  Returns the diretory where all of the configuration files are stored.
 
 - Required: configurationType, parameters[model_id,directory,simulationname,simulation_start_time,simulation_duration,simulation_id,simulation_broker_host,simulation_broker_port]
@@ -8,6 +8,7 @@ Generates all configuration files necessary to run a sumulation using the GridLA
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D All",
     "parameters": {
@@ -33,7 +34,7 @@ Response:
   
   
 Request GridLAB-D Base File
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the main GLM file required by the GridLAB-D simulator
 
 - Required: configurationType, parameters[model_id]
@@ -41,6 +42,7 @@ Generates the main GLM file required by the GridLAB-D simulator
 
 Request:  goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D Base GLM",
     "parameters": {
@@ -55,6 +57,7 @@ Request:  goss.gridappsd.process.request.config
   
 Response:
 ::
+
   object regulator_configuration {
     name "rcon_VREG4";
     connect_type WYE_WYE;
@@ -62,7 +65,7 @@ Response:
   .......
 
 Request GridLAB-D Symbols File
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the symbols file with XY coordinates used by the GridLAB-D simulator
 
 - Required: configurationType, parameters[model_id]
@@ -70,6 +73,7 @@ Generates the symbols file with XY coordinates used by the GridLAB-D simulator
 
 Request:  goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D Symbols",
     "parameters": {
@@ -79,6 +83,7 @@ Request:  goss.gridappsd.process.request.config
   
 Response:
 ::
+
   {"feeder":[
   {"swing_nodes":[
   {"name":"source","bus":"sourcebus","phases":"ABC",
@@ -89,7 +94,7 @@ Response:
 
 
 Request CIM Dictionary file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates a dictionary file which maps between the mrid identifiers used by the CIM model and the other names of model objects used by simulators.
 
 - Required: configurationType, parameters[model_id]
@@ -97,6 +102,7 @@ Generates a dictionary file which maps between the mrid identifiers used by the 
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"CIM Dictionary",
     "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
@@ -104,6 +110,7 @@ Request: goss.gridappsd.process.request.config
 
 Response:
 ::
+
   {"feeders":[
   {"name":"ieee8500",
   "mRID":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -138,7 +145,7 @@ Response:
   }]}
 
 Request CIM Feeder Index file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates a list of the feeders available powergrid model data store
 
 - Required: configurationType, parameters[model_id]
@@ -146,6 +153,7 @@ Generates a list of the feeders available powergrid model data store
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"CIM Feeder Index",
     "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
@@ -153,6 +161,7 @@ Request: goss.gridappsd.process.request.config
 
 Response:
 ::
+
   {"feeders":[
   {"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"ieee123_Substation","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"large","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"ieee","regionID":"_24809814-4EC6-29D2-B509-7F8BFB646437"},
   {"name":"ieee13nodecktassets","mRID":"_5B816B93-7A5F-B64C-8460-47C17D6E4B0F","substationName":"ieee13nodecktassets_Substation","substationID":"_D5B23536-54A7-984E-78F2-B136E9B6380E","subregionName":"test","subregionID":"_C43D4535-5786-01CD-C3C4-69AAC7945AD2","regionName":"ieee","regionID":"_85D8A951-64F2-4787-C922-4AE0AA99A874"},
@@ -160,7 +169,7 @@ Response:
   ]}
 
 Request Simulation Output Configuration file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates file containing objects and properties with measurements avilable in the selected model
 
 - Required: configurationType, parameters[model_id]
@@ -168,6 +177,7 @@ Generates file containing objects and properties with measurements avilable in t
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"CIM Feeder Index",
     "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
@@ -175,6 +185,7 @@ Request: goss.gridappsd.process.request.config
 
 Response:
 ::
+
   {
     "cap_capbank0a": [
       "switchA",
@@ -200,13 +211,14 @@ Response:
 
 
 Request YBus Export Configuration file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates file containing ybus configuration for the selected simulation.  Simulation must be running.
 
 - Required: configurationType, parameters[simulation_id]
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"YBus Export",
     "parameters":{"simulation_id":"12345"}
@@ -214,6 +226,7 @@ Request: goss.gridappsd.process.request.config
 
 Response:
 ::
+
   {
     yParseFilePath":"/tmp/gridappsd_tmp/1129698954/base_ysparse.csv",
     "nodeListFilePath":"/tmp/gridappsd_tmp/1129698954/base_nodelist.csv",

@@ -1,7 +1,7 @@
 The Powergrid Model Data Manager API allows you to query the powergrid model data store.  Six actions are available: Query_Model_names, Query, Query_Object, Query_Object_Types, Query_Model, and Put_Model
 
 Query Model Info
-^^^^^^^
+^^^^^^^^^^^^^^^^
 
 Returns list of names/ids for models, substations, subregions, and regions for all available feeders.  
 
@@ -11,6 +11,7 @@ Allowed parameter is:
 
 Example Request:
 ::
+
 	{
 		"requestType": "QUERY_MODEL_INFO",
 		"resultFormat": "JSON"
@@ -18,6 +19,7 @@ Example Request:
 
 Example Response for result format JSON:
 ::
+
 	{
 		"models": [{
 			"modelName": "ieee123",
@@ -32,7 +34,7 @@ Example Response for result format JSON:
 
 
 Query Model Names
-^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 Returns list of names for all available models.  
 
@@ -42,6 +44,7 @@ Allowed parameter is:
 
 Example Request:    goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_MODEL_NAMES",
 		"resultFormat": "JSON"
@@ -49,6 +52,7 @@ Example Request:    goss.gridappsd.process.request.data.powergridmodel
 
 Example Response for result format JSON:
 ::
+
 	{
 		"modelNames": ["_49AD8E07-3BF9-A4E2-CB8F-C3722F837B62",
 		"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -60,11 +64,12 @@ Example Response for result format JSON:
 	
 Python API function:
 ::
+
 	query_model_names(self, model_id=None)
 
 
 Query
-^^^^^^^
+^^^^^
 Returns results from a generic SPARQL query against one or all models.
 
 Allowed parameters are:
@@ -75,6 +80,7 @@ Allowed parameters are:
 
 Example Request:  goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY",
 		"resultFormat": "JSON",
@@ -84,6 +90,7 @@ Example Request:  goss.gridappsd.process.request.data.powergridmodel
 
 Example Response:
 ::
+
 	{
   	"head": {
    		 "vars": [ "line_name" , "subregion_name" , "region_name" ]
@@ -101,11 +108,12 @@ Example Response:
 	
 Python API function:
 ::
+
 	query_data(self, query, database_type=POWERGRID_MODEL, timeout=30) 
 
 
 Query Object
-^^^^^^^
+^^^^^^^^^^^^
 Returns details for a particular object based on the object Id.
 
 Allowed parameters are:
@@ -116,6 +124,7 @@ Allowed parameters are:
 
 Example Request:  goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_OBJECT",
 		"resultFormat": "JSON",
@@ -124,6 +133,7 @@ Example Request:  goss.gridappsd.process.request.data.powergridmodel
 	
 Example Response:
 ::
+
 	{
 	  "head": {
 	    "vars": [ "property" , "value" ]
@@ -156,11 +166,12 @@ Example Response:
 	
 Python API function:
 ::
+
 	query_object(self, object_id, model_id=None): 
 
 
 Query Object Types
-^^^^^^^
+^^^^^^^^^^^^^^^^^^
 Returns the available object types in the model
 
 Allowed parameters are:
@@ -170,6 +181,7 @@ Allowed parameters are:
 
 Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_OBJECT_TYPES",
 		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -179,6 +191,7 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 	
 Example Response:
 ::
+
 	{
 		"objectTypes": ["http://iec.ch/TC57/2012/CIM-schema-cim17#ConnectivityNode",
 		"http://iec.ch/TC57/2012/CIM-schema-cim17#TransformerTank",
@@ -193,11 +206,12 @@ Example Response:
 
 Python API function:
 ::
+
 	query_object_types(self, model_id=None) 
 
 
 Query Model
-^^^^^^^
+^^^^^^^^^^^
 Returns all or part of the specified model.  Can be filtered by object type
 
 Allowed parameters are:
@@ -209,6 +223,7 @@ Allowed parameters are:
 
 Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_MODEL",
 		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -219,6 +234,7 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 	
 Example Response:
 ::
+
 	[{
 		"id": "_0F9BF9EE-B900-71C2-B892-0287A875A158",
 		"http://iec.ch/TC57/2012/CIM-schema-cim17#ConnectivityNode.ConnectivityNodeContainer": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -230,7 +246,7 @@ Example Response:
 	
 	
 Query Object Ids
-^^^^^^^
+^^^^^^^^^^^^^^^^
 *Not yet available* Returns details for a particular object based on the object Id.
 
 Allowed parameters are:
@@ -241,6 +257,7 @@ Allowed parameters are:
 
 Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_OBJECT_IDS",
 		"resultFormat": "JSON",
@@ -248,7 +265,8 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 	}
 	
 Example Response:
-::	
+::
+	
 		{
 		"objectIDs": ["_49AD8E07-3BF9-A4E2-CB8F-C3722F837B62",
 		"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
@@ -260,7 +278,7 @@ Example Response:
 	
 
 Query Object Dictionary By Type
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 *Not yet available* Returns details for either all objects of a particular type or a particular object based on the object Id in the same format as the model dictionary file.
 
 Allowed parameters are:
@@ -272,6 +290,7 @@ Allowed parameters are:
 
 Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
+
 	{
 		"requestType": "QUERY_OBJECT_IDS",
 		"resultFormat": "JSON",
@@ -279,7 +298,8 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 	}
 	
 Example Response:
-::	
+::
+	
 	{
 		"name": "c83",
 		"mRID": "_8B8DB36D-CF7F-8C11-6C9C-E24B59C02366",
@@ -302,16 +322,12 @@ Example Response:
 		"monitoredBus": null,
 		"monitoredPhase": null
 	},....	
-	
-	
-	
-	
-	
+
 Put Model
-^^^^^^^
+^^^^^^^^^
 .. note:: Future Capability. Not yet available.
 
-Inserts a new model into the model repository. This could validate model format during insertion  **Keep cim/model version in mind
+Inserts a new model into the model repository. This could validate model format during insertion  **Keep cim/model version in mind**
 
 Allowed parameters are:
 

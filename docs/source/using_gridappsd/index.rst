@@ -47,6 +47,11 @@ Simulation API
 
 .. include:: api_examples/simulation_request.rst
 
+Timeseries API
+--------------
+
+.. include:: api_examples/timeseries_data_api.rst
+
 Hosting Application or Service
 ------------------------------
 

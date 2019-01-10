@@ -190,9 +190,20 @@ actually incorporated into all GridAPPS-D processes this way.
 
 Figure 6: Hosting an application
 
+|uml_platform_objects|
+
+Figure 7: Platform Objects
+
+|uml_external_objects|
+
+Figure 8: External Objects
+
 .. |uml_image0| image:: UML_Diagrams/media/uml_Platform.png
 .. |uml_image1| image:: UML_Diagrams/media/uml_VVO.png
 .. |uml_image2| image:: UML_Diagrams/media/uml_ModelManagement.png
 .. |uml_image3| image:: UML_Diagrams/media/uml_Testing.png
 .. |uml_image4| image:: UML_Diagrams/media/uml_Debugging.png
 .. |uml_image5| image:: UML_Diagrams/media/uml_Hosting.png
+.. |uml_platform_objects| image:: UML_Diagrams/media/uml_Platform_Objects.png
+.. |uml_external_objects| image:: UML_Diagrams/media/uml_External_Objects.png
+
