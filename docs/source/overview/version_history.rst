@@ -249,7 +249,6 @@ Version 2019.03.0
 
 2. New Features
 		
-	- Log manager: Listening to topic instead of queue. Made logging easier within the platform. Log setting obtained from platform configuration
 	- GridAPPS-D – VOLTTRON initial interface created. https://github.com/VOLTTRON/volttron/tree/rabbitmq-volttron/examples/GridAPPS-DAgent
 	- Fault injection: Simulator can receive faults. Fault schema created in Test Manager. Workflow for fault processing documented on readthedocs.
 	- Viz: Created menu for capacitors, regulators.
