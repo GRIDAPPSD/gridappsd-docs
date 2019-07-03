@@ -17,7 +17,6 @@ GridAPPS-D's Documentation
    data_model/index
    hosted_applications/index
    api_docs/index
-   api_docs/packages
    license/license
    
 Indices and tables

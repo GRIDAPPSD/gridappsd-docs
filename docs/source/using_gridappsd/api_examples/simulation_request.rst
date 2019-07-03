@@ -97,11 +97,11 @@ Example Message:
 		"simulation_id" : "12ae2345",
 	    "message" : {
 	    	"timestamp" : "YYYY-MM-DDThh:mm:ss.sssZ",
-	        "measurement" : {
-	        	"measurement_mrid" : "123a456b-789c-012d-345e-678f901a234b"
+	        "measurements" : [{
+	            "measurement_mrid" : "123a456b-789c-012d-345e-678f901a234b"
 	            "magnitude" : 3410.456,
 	            "angle" : -123.456
-	        }
+	        }]
 	    }
 	}
 	

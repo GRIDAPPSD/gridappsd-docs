@@ -20,7 +20,7 @@ proposed from the GridAPPS-D project.
 Class Diagrams for the Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Figure 1 through Figure 11 present the UML class diagrams generated from
+Figure 1 through Figure 17 present the UML class diagrams generated from
 Enterprise Architect [2]_. These diagrams provide an essential roadmap
 for understanding:
 
@@ -114,8 +114,7 @@ PhaseImpedanceData instances that define the lower triangle of the Z and Y
 matrices per unit length.  The row and column attributes must agree with 
 ACLineSegmentPhase:sequenceNumber.  The fourth way to specify impedance is 
 by wire/cable and spacing data, by association to WireSpacingInfo and 
-WireInfo.  (Note: each association is actually referenced as 
-PowerSystemResource.AssetDataSheet, as illustrated in Figure 8.) If there 
+WireInfo.  If there 
 are ACLineSegmentPhase instances reverse-associated to the ACLineSegment, 
 then per-phase modeling applies.  There are several use cases for 
 ACLineSegmentPhase: 1) single-phase or two-phase primary, 2) low-voltage 
@@ -319,9 +318,19 @@ distinguish between those types.  If the SynchronousMachine regulates
 voltage, then the RegulatingControl (with attribute values) and Terminal 
 associations need to be provided.  
 
+|imgcim1547|
+
+Figure 15: The IEEE1547Info class describes nameplate information,
+including ratings, which shall be available for DER that complies 
+with IEEE Std. 1547-2018. Both inverters (Figure 13) and rotating
+machines (Figure 14) can reference this class for nameplate information
+in the network model. Preliminary values for these attributes would be 
+available from an application to interconnect DER, and then updated as 
+the project moves through commissioning to operational status.
+
 |imghouses|
 
-Figure 15: Houses are used to create 2nd-order thermal models of the 
+Figure 16: Houses are used to create 2nd-order thermal models of the 
 building envelope, with internal ThermostatController and heating/cooling 
 systems.  The purpose is to introduce realistic load stochastic behaviors 
 that are independent from and faster-moving than data typically available 
@@ -340,7 +349,7 @@ this will be harmonized with CIM market structures in the 62235 package.
 
 |imgfaults|
  
-Figure 16: Faults include open conductors and short circuits (optionally 
+Figure 17: Faults include open conductors and short circuits (optionally 
 including ground) on any combination of phases.  In GridAPPS-D, every 
 Fault will be an EquipmentFault associated to a Terminal (i.e., we are not 
 using LineFault, which requires a lengthFromTerminal1 attribute).  The 
@@ -354,7 +363,7 @@ Typical Queries
 
 These queries focus on requirements of the first volt-var application.
 
-1. Capacitors (Figure 5, Figure 17, Figure 18, Figure 19)
+1. Capacitors (Figure 5, Figure 18, Figure 19, Figure 20)
 
    a. Create a list of capacitors with bus name (Connectivity Node in
       Figure 1), kVAR per phase, control mode, target value and target
@@ -363,7 +372,7 @@ These queries focus on requirements of the first volt-var application.
    b. For a selected capacitor, update the control mode, target value,
       and target deadband
 
-2. Regulators (Figure 7, Figure 8, Figure 17, Figure 34)
+2. Regulators (Figure 7, Figure 8, Figure 18, Figure 35)
 
    a. List all transformers that have a tap changer attached, along with
       their bus names and kVA sizes
@@ -376,12 +385,12 @@ These queries focus on requirements of the first volt-var application.
 3. Transformers (Figure 6, Figure 9)
 
    a. Given a bus name or load (Figure 3), find the transformer serving
-      it (Figure 21, Figure 24)
+      it (Figure 22, Figure 25)
 
    b. Find the substation transformer, defined as the largest
       transformer (by kVA size and or highest voltage rating)
 
-   c. List the transformer catalog (Figure 9, Figure 25) with name,
+   c. List the transformer catalog (Figure 9, Figure 26) with name,
       highest ratedS, list of winding ratedU in descending order, vector
       group (https://en.wikipedia.org/wiki/Vector\_group used with
       connectionKind and phaseAngleClock), and percent impedance
@@ -391,33 +400,33 @@ These queries focus on requirements of the first volt-var application.
       transformer can be defined in three ways
 
       i.   Without tanks, for three-phase, multi-winding, balanced
-           transformers (Figure 21 and Figure 22).
+           transformers (Figure 22 and Figure 23).
 
       ii.  With tanks along with TransformerTankInfo (Figure 9) from a
            catalog of “transformer codes”, which may describe balanced
-           or unbalanced transformers. See Figure 24 and Figure 25.
+           or unbalanced transformers. See Figure 25 and Figure 26.
 
       iii. With tanks for unbalanced transformers, and
-           TransformerTankInfo created on-the-fly. See Figure 24 and
-           Figure 25.
+           TransformerTankInfo created on-the-fly. See Figure 25 and
+           Figure 26.
 
    e. Given a transformer (Figure 6), update it to use a different
       catalog entry (TransformerTankInfo in Figure 9)
 
-4. Lines (Figure 2, Figure 10, Figure 17)
+4. Lines (Figure 2, Figure 10, Figure 18)
 
    a. List the line and cable catalog entries that meet a minimum
       ratedCurrent and specific WireUsageKind. For cables, be able to
       specify tape shield vs. concentric neutral, the
-      WireInsulationKind, and a minimum insulationThickness. (Figure 32)
+      WireInsulationKind, and a minimum insulationThickness. (Figure 33)
 
    b. Given a line segment (Figure 2) update to use a different linecode
-      (Figure 10, Figure 31)
+      (Figure 10, Figure 32)
 
    c. Given a bus name, list the ACLineSegments connected to the bus,
       along with the length, total r, total x, and phases used. There
       are four cases as noted in the caption of Figure 2, and see Figure
-      28 through Figure 31.
+      29 through Figure 32.
 
    d. Given a bus name, list the set of ACLineSegments (or
       PowerTransformers and Switches) completing a path from it back to
@@ -428,24 +437,24 @@ These queries focus on requirements of the first volt-var application.
 5. Voltage and other measurements (Figure 1, Figure 11)
 
    a. Given a bus, attach a voltage solution point (SvVoltage, Figure
-      35)
+      36)
 
    b. List all voltage solution points and their buses, and for each
       bus, list the phases actually present
 
-   c. For tap changer position (SvTapStep, Figure 36), attach and list
+   c. For tap changer position (SvTapStep, Figure 37), attach and list
       values as in items a and b
 
    d. For capacitor switch status (SvShuntCompensatorSections, Figure
-      37), attach and list values as in items a and b
+      38), attach and list values as in items a and b
 
-6. Loads (Figure 3, Figure 33)
+6. Loads (Figure 3, Figure 34)
 
    a. Given a bus name, list and total all of the loads connected by
       phase, showing the total p and q, and the composite ZIP
       coefficients
 
-7. Switching (Figure 4, Figure 27)
+7. Switching (Figure 4, Figure 28)
 
    a. Given a bus name, trace back to the EnergySource and list the
       switches encountered, grouped by type (i.e. the leaf class in
@@ -463,7 +472,7 @@ illustrating how to perform typical queries and updates. For those
 unfamiliar with UML object diagrams:
 
 1. Each object will be an instance of a class, and more than one
-   instance of a class can appear on the diagram. For example, Figure 17
+   instance of a class can appear on the diagram. For example, Figure 18
    shows two ConnectivityNode instances, one for each end of a
    ConductingEquipment.
 
@@ -483,7 +492,7 @@ unfamiliar with UML object diagrams:
    difference is that only one way of navigating a particular
    association will be defined in the profile. For example, the lower
    left corner of Figure 1 shows a two-way link between Terminal
-   and ConnectivityNode in the UML class diagram. However, Figure 17
+   and ConnectivityNode in the UML class diagram. However, Figure 18
    shows that only one direction has been defined in the profile. Each
    Terminal has a direct reference to its corresponding
    ConnectivityNode. In order to navigate the reverse direction from
@@ -510,7 +519,7 @@ at a bus, more than one load, more than one line, etc.
 
 |imgcim11|
 
-Figure 17: In order to traverse buses and components, begin with a 
+Figure 18: In order to traverse buses and components, begin with a 
 ConnectivityNode (left).  Collect all terminals referencing that 
 ConnectivityNode; each Terminal will have one-to-one association with 
 ConductingEquipment, of which there are many subclasses.  In this example, 
@@ -526,7 +535,7 @@ ConductingEquipment, but we traverse connectivity via transformer ends
 (aka windings).  This is illustrated later.  
 
 In order to find capacitors (or anything else) associated with a 
-particular “feeder”, Figure 18 shows that you would query for objects 
+particular “feeder”, Figure 19 shows that you would query for objects 
 having EquipmentContainer reference to the Feeder object.  In GridAPPS-D, 
 we only use Feeder for equipment container in CIM, and this would 
 correspond to one entire GridLAB-D model.  There is also a BaseVoltage 
@@ -540,7 +549,7 @@ few exceptions like percent and kW values on transformer test sheets
 
 |imgcim12|
 
-Figure 18: All conducting equipment lies within an EquipmentContainer,
+Figure 19: All conducting equipment lies within an EquipmentContainer,
 which in GridAPPS-D, will be a Feeder object named after the feeder. It
 also has reference to a BaseVoltage, which is typically one of the ANSI
 preferred system voltages. Power transformers are a little different, in
@@ -551,12 +560,12 @@ equipment has a Location, which contains XY coordinates (see Figure 1).
 The Location is useful for visualization, but is not essential for a
 power flow model.
 
-Completing the discussion of capacitors, Figure 19 provides two examples
+Completing the discussion of capacitors, Figure 20 provides two examples
 for single-phase, and three-phase with local voltage control. As shunt
 elements, capacitors have only one Terminal instance. Loads and sources
 have one terminal, lines and switches have two terminals, and
 transformers have two or more terminals. Examples of all those are shown
-later. In Figure 19, the capacitor’s kVAR rating will be based on its
+later. In Figure 20, the capacitor’s kVAR rating will be based on its
 nameplate ratedU, not the system’s nominalVoltage.
 
 Often, the question will arise “what phases exist at this bus?”.There 
@@ -565,9 +574,9 @@ use the Terminal phases attribute in preference to the "wires phase model"
 classes.  For example, thephases at a line segment terminal can always be 
 obtained from the ACLineSegmentPhase instances.  To answer the question 
 about bus phasing, we’d have to query for all ConductingEquipment 
-instances having Terminals connected to that bus, as in Figure 17.  The 
+instances having Terminals connected to that bus, as in Figure 18.  The 
 types of ConductingEquipment that may have individual phases include 
-LinearShuntCompensators (Figure 19), ACLineSegments, PowerTransformers 
+LinearShuntCompensators (Figure 20), ACLineSegments, PowerTransformers 
 (via TransformerEnds), EnergyConsumers, EnergySources, 
 PowerElectronicsConnections, and descendants of Switch.  If the 
 ConductingEquipment has such individual phases, then add those phases to 
@@ -575,14 +584,14 @@ list of phases existing at the bus.  If there are no individual phases,
 then ABC all exist at the bus.  Note this doesn’t guarantee that all 
 wiring to the bus is correct; for example, you could still have a 
 three-phase load served by only a two-phase line, which would be a 
-modeling error.  In Figure 19, we’d find phase C at Bus611 and phases 
+modeling error.  In Figure 20, we’d find phase C at Bus611 and phases 
 ABC at Bus675.  Elsewhere in the model, there should be ACLineSegments, 
 PowerTransformers or Switch descendants delivering phase C to Bus611, all 
 three phases ABC to Bus675.  
 
 |imgcim13|
 
-Figure 19: Capacitors are called LinearShuntCompensator in CIM. On the
+Figure 20: Capacitors are called LinearShuntCompensator in CIM. On the
 left, a 100 kVAR, 2400 V single-phase bank is shown on phase C at bus
 611. bPerSection = 100e3 / 2400^2 [S], and the bPerSection on
 LinearShuntCompensatorPhase predominates; these values can differ among
@@ -600,8 +609,8 @@ Terminal could be used. The control delay is called aVRDelay in CIM, and
 it’s an attribute of the LinearShuntCompensator instead of the
 RegulatingControl. It corresponds to “dwell time” in GridLAB-D.
 
-Figure 20 through Figure 25 illustrate the transformer query tasks, plus 
-Figure 34 for attached voltage regulators.  The autotransformer example is 
+Figure 21 through Figure 26 illustrate the transformer query tasks, plus 
+Figure 35 for attached voltage regulators.  The autotransformer example is 
 rated 500/345/13.8 kV and 500/500/50 MVA, for a transmission system.  The 
 short circuit test values are Z\ :sub:`HL`\ =10%, Z\ :sub:`HT`\ =25% and 
 Z\ :sub:`LT`\ =30%.  The no-load test values are 0.05% exciting current 
@@ -615,7 +624,7 @@ test reports.
 
 |imgcim14|
 
-Figure 20: Autotransformer with delta tertiary winding acts like a
+Figure 21: Autotransformer with delta tertiary winding acts like a
 wye-wye transformer with smaller delta tertiary. The vector group would
 be Yynd1 or Yyd1. For analyses other than power flow, it can be
 represented more accurately as the physical series (n1) – common (n2)
@@ -624,7 +633,7 @@ three-winding transformer.
 
 |imgcim15|
 
-Figure 21: A three-winding autotransformer is represented in CIM as a 
+Figure 22: A three-winding autotransformer is represented in CIM as a 
 PowerTransformer with three PowerTransformerEnds, because it’s balanced 
 and three-phase.  The three Terminals have direct ConductingEquipment 
 references to the PowerTransformer, so you can find it from bus1, busX or 
@@ -638,7 +647,7 @@ and endNumber establishes that end’s place in the vectorGroup.
 
 |imgcim16|
 
-Figure 22: Power transformer impedances correspond to the three-winding
+Figure 23: Power transformer impedances correspond to the three-winding
 autotransformer example of Figure 15 and Figure 16. There are three
 instances of TransformerMeshImpedance connected pair-wise between the
 three windings / ends. The x and r values are in Ohms referred to the
@@ -649,7 +658,7 @@ ratedU.
 
 |imgcim17|
 
-Figure 23: Open wye - open delta transformer banks are used to provide 
+Figure 24: Open wye - open delta transformer banks are used to provide 
 inexpensive three-phase service to loads, by using only two single-phase 
 transformers.  This is an unbalanced transformer, and as such it requires 
 tank modeling in CIM.  Physically, the two transformers would be in 
@@ -659,13 +668,13 @@ secondary would include s1 and s2 instead of A and B.
 
 |imgcim18|
 
-Figure 24: Unbalanced PowerTransformer instances comprise one or more
+Figure 25: Unbalanced PowerTransformer instances comprise one or more
 TransformerTanks, which own the TransformerTankEnds. Through the ends,
 wdgHi collects phases ABN and busLo collects phases ABCN. Typically,
 phase C will also exist at wdgHi, but this transformer doesn’t require
 it. We still assign vectorGroup Yd1 to the supervising PowerTransformer,
 as this is the typical case. The modeler should determine that. By
-comparison to Figure 23, there is a possible ambiguity in how endA3
+comparison to Figure 24, there is a possible ambiguity in how endA3
 represents the polarity dot at the neutral end of Wdg A3. An earlier CIM
 proposal would have assigned phaseAngleClock = 6 on wdgA3, but the
 attribute was removed from TransformerTankEnd. It may not be possible to
@@ -677,7 +686,7 @@ attribute for TransformerTankEnd.
 
 |imgcim19|
 
-Figure 25: This Asset catalog example defines the impedances for Tank B of 
+Figure 26: This Asset catalog example defines the impedances for Tank B of 
 the open wye – open delta bank.  This is a 50 kVA, 7200 / 240 V 
 single-phase transformer.  It has 1% exciting current and 0.4 kW loss in 
 the no-load test, plus 2.1% reactance and 0.5 kW loss in the short-circuit 
@@ -687,29 +696,29 @@ linked with an AssetDataSheet association shown to the left.  Furthermore,
 endNumber on the TransformerEndInfo has to match endNumber on the 
 TransformerTankEnd instances associated to Tank B.  Instead of catalog 
 information, we could have used mesh impedance and core admittance as in 
-Figure 17, but we’d have to convert the test sheets to SI units and we 
+Figure 18, but we’d have to convert the test sheets to SI units and we 
 could not share data with other TransformerTank instances, both of which 
 are inconvenient.  
 
-Figure 26 through Figure 32 illustrate the query tasks for
+Figure 27 through Figure 33 illustrate the query tasks for
 ACLineSegments and Switches, which will define most of the circuit’s
 connectivity. The example sequence impedances were based on Z\ :sub:`1`
 = 0.1 + j0.8 Ω/mile and Z\ :sub:`0` = 0.5 + j2.0 Ω /mile. For
 distribution systems, use of the shared catalog data is more common,
-either pre-calculated matrix (Figure 30) or spacing and conductor
-(Figure 31 and Figure 32). In both cases, impedance calculation is
+either pre-calculated matrix (Figure 31) or spacing and conductor
+(Figure 32 and Figure 33). In both cases, impedance calculation is
 outside the scope of CIM (e.g. GridLAB-D internally calculates line
 impedance from spacing and conductor data).
 
 |imgcim20|
 
-Figure 26: An ACLineSegment with two phases, A and C. If there are no
+Figure 27: An ACLineSegment with two phases, A and C. If there are no
 ACLineSegmentPhase instances that associate to it, assume it’s a
 three-phase ACLineSegment. This adds phases AC to bus671 and bus684.
 
 |imgcim21|
 
-Figure 27: This 50-Amp load break switch connects phases AC between 
+Figure 28: This 50-Amp load break switch connects phases AC between 
 busLeft and busRight.  Without associated SwitchPhase instances, it would 
 be a three-phase switch.  This switch also transposes the phases; A on 
 side 1 connects with C on side 2, while C on side 1 connects with A on 
@@ -722,14 +731,14 @@ be toggled appropriately.  See Figure 4 for other types of switch.
 
 |imgcim22|
 
-Figure 28: This is a balanced three-phase ACLineSegment between bus632
+Figure 29: This is a balanced three-phase ACLineSegment between bus632
 and bus671, 2000 feet or 609.6 m long. Sequence impedances are specified
 in ohms, as attributes on the ACLineSegment. This is a typical pattern
 for transmission lines, but not distribution lines.
 
 |imgcim23|
 
-Figure 29: The impedances from Figure 23 were divided by 609.6 m, to
+Figure 30: The impedances from Figure 24 were divided by 609.6 m, to
 obtain ohms per meter for seqCat1. Utilities often call this a “line
 code”, and other ACLineSegment instances can share the same
 PerLengthImpedance. A model imported into the CIM could have many line
@@ -739,11 +748,11 @@ PerLengthImpedance.
 
 |imgcim24|
 
-Figure 30: This is a two-phase line segment from bus671 to bus684 using a 
+Figure 31: This is a two-phase line segment from bus671 to bus684 using a 
 line code, which has been specified using a 2x2 symmetric matrix of phase 
 impedances per meter, instead of sequence impedances per meter.  This is 
-more common for distribution than either Figure 28 or Figure 29.  It’s 
-distinguished from Figure 29 by the fact that PerLengthImpedance 
+more common for distribution than either Figure 29 or Figure 30.  It’s 
+distinguished from Figure 30 by the fact that PerLengthImpedance 
 references an instance of PerLengthPhaseImpedance, not 
 PerLengthSequenceImpedance.  The conductorCount attribute tells us it’s 
 a 2x2 matrix, which will have two unique diagonal elements and one 
@@ -757,7 +766,7 @@ here, mtx604 can apply to phasing AB, BC or AC.
 
 |imgcim25|
 
-Figure 31: The two-phase ACLineSegment impedance defined by sharing wire 
+Figure 32: The two-phase ACLineSegment impedance defined by sharing wire 
 and spacing data from a catalog.  Each ACLineSegmentPhase links to an 
 OverheadWireInfo instance via the AssetDataSheet association.  If the 
 neutral (N) is present, we have to specify its wire information for a 
@@ -768,8 +777,8 @@ AssetDataSheet assocation.
 
 |imgcim26|
 
-Figure 32: The upper five instances define catalog attributes for Figure 
-26.  The WirePosition xCoord and yCoord units are meters, not feet, and 
+Figure 33: The upper five instances define catalog attributes for Figure 
+27.  The WirePosition xCoord and yCoord units are meters, not feet, and 
 they include sequenceNumber assignments to match ACLineSegmentPhase 
 sequenceNumbers.  The phaseWireSpacing and phaseWireCount attributes are 
 for sub-conductor bundling on EHV and UHV transmission lines; bundling is 
@@ -789,24 +798,24 @@ you can use insulationThickness as a proxy for voltage rating in queries.
 Here, 5.588 mm corresponds to 220 mils, which is a common size for 
 distribution.  
 
-Figure 33 illustrates the loads, which are called EnergyConsumer in CIM.
+Figure 34 illustrates the loads, which are called EnergyConsumer in CIM.
 The houses and appliances from GridLAB-D are not supported in CIM. Only
 ZIP loads can be represented. Further, any load schedules would have to
 be defined outside of CIM. Assume that the CIM loads are peak values.
 
-Figure 34 illustrates the voltage regulator function. Note that
+Figure 35 illustrates the voltage regulator function. Note that
 GridLAB-D combines the regulator and transformer functions, while CIM
 separates them. Also, the CIM provides voltage and current transducer
 ratios for tap changer controls, but not for capacitor controls.
 
-Figure 35 through Figure 37 illustrate how solved values can be attached 
+Figure 36 through Figure 38 illustrate how solved values can be attached 
 to buses or other components.  
 
 |imgcim27|
 
-Figure 33: The three-phase load (aka EnergyConsumer) on bus671 is balanced 
+Figure 34: The three-phase load (aka EnergyConsumer) on bus671 is balanced 
 and connected in delta.  It has no ratedU attribute, so use the referenced 
-BaseVoltage (Figure 18) if a voltage level is required.  On the right, a 
+BaseVoltage (Figure 19) if a voltage level is required.  On the right, a 
 three-phase wye-connected unbalanced load on bus675 is indicated by the 
 presence of three EnergyConsumerPhase instances referencing 
 UnbalancedLoad.  For consistency in searches and visualization, 
@@ -822,12 +831,12 @@ determine the denominator for normalization).
 
 |imgcim28|
 
-Figure 34: In CIM, the voltage regulator function is separated from the 
+Figure 35: In CIM, the voltage regulator function is separated from the 
 tap-changing transformer.  The IEEE 13-bus system has a bank of three 
 independent single-phase regulators at busRG60, and this example shows a 
 RatioTapChanger attached to the regulator on phase A, represented by the 
-TransformerTankEnd having phases=A or phases=AN.  See Figure 24 for a more 
-complete picture of TransformerTankEnds, or Figure 21 for a more complete 
+TransformerTankEnd having phases=A or phases=AN.  See Figure 25 for a more 
+complete picture of TransformerTankEnds, or Figure 22 for a more complete 
 picture of PowerTransformerEnds.  Either one can be the TransformerEnd in 
 this figure, but with a PowerTransformerEnd, all three phase taps would 
 change in unison (i.e.  they are “ganged”).  Most regulator attributes 
@@ -840,34 +849,34 @@ RatioTapChanger and TapChangerControl instances for phases B and C.
 
 |imgcim29|
 
-Figure 35: In this profile, a solved voltage value attaches to 
+Figure 36: In this profile, a solved voltage value attaches to 
 ConnectivityNode in GridAPPS-D.  Positive sequence or phase A is implied, 
 unless the phase attribute is specified.  
 
 |imgcim30|
 
-Figure 36: SvTapStep links to a TransformerEnd indirectly, through the
+Figure 37: SvTapStep links to a TransformerEnd indirectly, through the
 RatioTapChanger. There is no phasing ambiguity because
 TransformerTankEnd has its phases attribute, while PowerTransformerEnd
 always includes ABC. Units for SvTapStep.position are per-unit.
 
 |imgcim31|
 
-Figure 37: The on/off value for a capacitor bank attaches directly to 
+Figure 38: The on/off value for a capacitor bank attaches directly to 
 LinearShuntCompensator.  If the phase attribute is not specified, then 
 this value applies to all phases.  
 
 Metering Relationship to Loads in the CIM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Figure 38 shows how emulated trouble calls will be connected to loads 
+Figure 39 shows how emulated trouble calls will be connected to loads 
 (EnergyConsumers) for test scenarios.  The TroubleTicket is associated 
 with Customer, CustomerAgreement and UsagePoint, which can then be 
-associated to Equipment or any of its descendants.  Figure 38 shows the 
+associated to Equipment or any of its descendants.  Figure 39 shows the 
 linkage to EnergyConsumer or EnergySource, but it can also be linked to 
 RegulatingCondEq (e.g., rotating machine and inverter-based DER).  There 
 are many attributes of Customer, CustomerAgreement and UsagePoint that are 
-not yet used in GridAPPS-D, and not shown in Figure 39.  These would be 
+not yet used in GridAPPS-D, and not shown in Figure 40.  These would be 
 important for future metering and customer management applications.  For 
 now, the only TroubleTicket attributes to be used are dateTimeOfReport, 
 resolvedDateTime and troubleKind.  The PNNLTroubleCallKind was added 
@@ -877,7 +886,7 @@ each TroubleTicket.
 
 |imgcim33|
 
-Figure 38: Trouble Calls route through Metering Usage Points to EnergyConsumers
+Figure 39: Trouble Calls route through Metering Usage Points to EnergyConsumers
 
 CIM Enhancements for RC4
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -951,7 +960,7 @@ cases, CIMTool reports only two kinds of validation error:
 2. **Minimum cardinality**: For TapChangerControl instances, the
    inherited RegulatingControl.RegulatingCondEq association is not
    specified. This is not really an error, as the association is only
-   needed for shunt capacitor controls. Figure 39 shows that
+   needed for shunt capacitor controls. Figure 40 shows that
    RegulatingCondEq was not selected for TapChangerControl in the
    profile, so this may reflect a defect in the validation code. Efforts
    to circumvent it were not successful.
@@ -961,12 +970,12 @@ other, for feeder models that solve in OpenDSS.
 
 |imgcimtool|
 
-Figure 39: Editing a Profile in CIMTool
+Figure 40: Editing a Profile in CIMTool
 
 Legacy Data Definition Language (DDL) for MySQL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As shown at the top of Figure 39, CIMTool builds *RC1.sql* to create
+As shown at the top of Figure 40, CIMTool builds *RC1.sql* to create
 tables in a relational database, but the syntax doesn’t match that
 required for MySQL. The following manual edits were made:
 
@@ -1109,5 +1118,6 @@ required for MySQL. The following manual edits were made:
 .. |imginverters| image:: CDPSM/media/cim_PowerElectronics.png
 .. |imgmachines| image:: CDPSM/media/cim_DERMachines.png
 .. |imghouses| image:: CDPSM/media/ext_Houses.png
-.. |imgmeas| image:: CDPSM/media/cim_MeasurementGRIDAPPSD.png
+.. |imgmeas| image:: CDPSM/media/cim_MeasurementGridAPPSD.png
+.. |imgcim1547| image:: CDPSM/media/cim_IEEE1547Info.png
 

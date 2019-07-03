@@ -28,5 +28,7 @@ and displayed alongside tables with current values for capacitor status
 
 .. include:: NREL_APPS/Real_Time_DER_Setpoint_Dispatch.rst
 
+.. include:: NREL_APPS/Grid_Forecasting.rst
+
 .. include:: NREL_APPS/Solar_Forecasting.rst
 

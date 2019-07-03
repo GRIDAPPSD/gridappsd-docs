@@ -47,32 +47,33 @@ the updated model and measurements.
 its interaction with GridApps=D.**
 
 Data requirements
+~~~~~~~~~~~~~~~~~
 
-Message schemas (UML) (Enterprise Architect software) Jeff will help
-draw the UML diagram.
+The DER application requires p and q values from the inverters attached to PVs, loads, and capacitors.
+The DER application also requires setting the p and q values of inverters attached to PVs.
 
 Testing and Validation
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Evaluation metrics of this application:
 
-=  Real/reactive power at the substation
+-  Real/reactive power at the substation
 
-=  System loss
+-  System loss
 
-=  Voltages across the entire distribution grid: voltage magnitude,
+-  Voltages across the entire distribution grid: voltage magnitude,
    voltage fluctuation, voltage unbalance.
 
-=  Legacy control device operations: total control actions of all
+-  Legacy control device operations: total control actions of all
    capacitors and regulators
 
 Scenarios:
 
-=  Optimal Dispatch for Distributed PV Systems
+-  Optimal Dispatch for Distributed PV Systems
 
-=  Optimal Dispatch for Distributed PV + Energy Storage
+-  Optimal Dispatch for Distributed PV + Energy Storage
 
-=  Etc. (will be added when implementing the application)
+-  Etc. (will be added when implementing the application)
 
 Operating/Running
 ~~~~~~~~~~~~~~~~~
