@@ -124,7 +124,10 @@ exclude_patterns = ['api_docs/gridlabd-cim.rst',
                     'using_gridappsd/api_examples/starting_in_java.rst',
                     'using_gridappsd/api_examples/starting_in_python.rst',
                     'using_gridappsd/api_examples/starting_in_websockets.rst',
-                    'using_gridappsd/api_examples/timeseries_data_api.rst']
+                    'using_gridappsd/api_examples/timeseries_data_api.rst',
+                    'using_gridappsd/Uploading_model_using_blazegraph_workbench.rst',
+                    'using_gridappsd/api_examples/weather.rst',
+                    'using_gridappsd/Inserting_measurements_blazegraph.rst']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'

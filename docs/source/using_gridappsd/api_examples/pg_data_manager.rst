@@ -84,7 +84,7 @@ Example Request:  goss.gridappsd.process.request.data.powergridmodel
 	{
 		"requestType": "QUERY",
 		"resultFormat": "JSON",
-		"queryString": "select ?line_name ?subregion_name ?region_name WHERE {?line rdf:type cim:Line.?line 	cim:IdentifiedObject.name ?line_name.?line cim:Line.Region ?subregion.?subregion cim:IdentifiedObject.name ?subregion_name.?subregion cim:SubGeographicalRegion.Region ?region.?region cim:IdentifiedObject.name ?region_name}"
+		"queryString": "select ?feeder_name ?subregion_name ?region_name WHERE {?line r:type c:Feeder.?line c:IdentifiedObject.name  ?feeder_name.?line c:Feeder.NormalEnergizingSubstation ?substation.?substation r:type c:Substation.?substation c:Substation.Region ?subregion.?subregion  c:IdentifiedObject.name  ?subregion_name .?subregion c:SubGeographicalRegion.Region  ?region . ?region   c:IdentifiedObject.name  ?region_name}"
 	}
 
 
@@ -226,10 +226,10 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 
 	{
 		"requestType": "QUERY_MODEL",
-		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+		"modelId": "_49AD8E07-3BF9-A4E2-CB8F-C3722F837B62",
 		"resultFormat": "JSON",
-		"filter": "?s cim:IdentifiedObject.name 'q14733'",
-		"objectType": "http://iec.ch/TC57/2012/CIM-schema-cim17#ConnectivityNode"
+		"filter": "?s cim:IdentifiedObject.name '650z'",
+		"objectType": "http://iec.ch/TC57/CIM100#ConnectivityNode"
 	}
 	
 Example Response:

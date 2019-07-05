@@ -1,5 +1,6 @@
 Solar Forecasting Application
----------------------------------------------------------------
+-----------------------------
+
 
 Objectives
 ~~~~~~~~~~
@@ -38,9 +39,9 @@ the site of interest, need to be adjusted prior to running the
 application. Whatever atmospheric variables are available via the 
 GridAPPS-D platform, they can be ingested into the PSPI based on 
 the user's needs (still in development). Once all desired parameters
- are chosen and the application is run, intra-hour GHI forecasts 
- can be made (5 to 60-minute forecasts) as frequently as observations 
- arrive (usually minutely).
+are chosen and the application is run, intra-hour GHI forecasts 
+can be made (5 to 60-minute forecasts) as frequently as observations 
+arrive (usually minutely).
 
 Testing and Validation
 ~~~~~~~~~~~~~~~~~~~~~~
