@@ -1,100 +1,87 @@
+Test Manager
+------------
+
 The Test Manager is responsible for testing an application or service against different events or scenarios.
-When the test manager receives a request test message with a specified simulation ID it will forward the simulation
-input and output to the specified port for the rules application and compare the simulation output with the expected results
+The Test Manager Configuration is sent as part of the RequestSimulation. The expected results and events are sent to the Test Manager for processing.
 
 1. Test Configuration
 
-The test configuration contains information to define the simulation run,
-initial conditions and default values.
+The test configuration contains the application ID, rules settings, expected results, and events.
+Other information need by the Test Manager like the simulation ID is obtained by the Simulation Context.
 
 Example:
 
 ::
 
   {
-      "power_system_configuration":"ieee8500",
-      "simulation_configuration":"ieee8500",
-      "duration":60,
-      "run_start":"2018-05-03 12:00:00",
-      "run_end":"2018-05-03 12:00:00",
-      "region_name":"ieee8500_Region",
-      "subregion_name":"ieee8500_SubRegion",
-      "line_name":"ieee8500",
-      "logging":"true",
-      "logging_options":{ "log":"true"
-
-      },
-      "initial_conditions":{
-
-      },
-      "default_values":{
-
-      }
-  }
-
-2. Test Script
-
-The test script contains the name of the test script and the name of the
-application, it needs to match the name of application on platform.
-It also contains the test configuration path, the outputs to to listen for,
-events, and the rules application script.
-
-`Supported Application or Service Types`_
-
-Example:
-
-::
-
-  {
-   "name": "sample_app",
-   "test_configuration": "./SampleTestConfig.json",
-   "application": "sample_app",
-   "outputs":
-        {"substation_link": ["xf_hvmv_sub"],
-         "regulator_list": ["reg_FEEDER_REG", "reg_VREG2", "reg_VREG3", "reg_VREG4"],
-         "regulator_configuration_list": ["rcon_FEEDER_REG", "rcon_VREG2", "rcon_VREG3", "rcon_VREG4"],
-         "capacitor_list": ["cap_capbank0a","cap_capbank0b", "cap_capbank0c", "cap_capbank1a", "cap_capbank1b", "cap_capbank1c", "cap_capbank2a", "cap_capbank2b", "cap_capbank2c", "cap_capbank3"],
-         "voltage_measurements": ["nd_l2955047", "nd_l3160107", "nd_l2673313", "nd_l2876814", "nd_m1047574", "nd_l3254238"]
-       },
-   "log" : {
-         "name":"string",
-         "location":"ref_location1234"
-     },
-     "events" : [
-
-     ],
-     "rules":[
-        {"name": "app_rules.py",
-         "port": 5000,
-         "topic":"input"
-      }  ]
+    "appId":String
+    "rules":{}
+    "expectedResults":{
+    },
+    "events":{
+    }
   }
 
 
-3. Expected results series:
+2. Expected results series:
 
 Time series json structure with expected results.
 
-::
+.. code-block:: JSON
+   :caption: Expected results
 
-  {
-      "expected_outputs": {
-          "1": {
-              "simulation_id": "2034749692",
-              "message": {
-                  "timestamp": "2018-05-03 18:24:20.464399",
-                  "measurements": [
-                      {
-                          "measurement_mrid": "21558b56-380b-4969-9ce1-9b1c91824a76",
-                          "value": 1
-                      }, ...]
-                      }
-                }
-      }
-  }
+    {
+    "output": {
+        "1248130802": {
+        "simulation_id": "559402036",
+        "message": {
+            "timestamp": 1535574871,
+            "measurements": [
+            {
+                "angle": -122.66883087158203,
+                "magnitude": 2438.561767578125,
+                "measurement_mrid": "_84541f26-084d-4ea7-a254-ea43678d51f9"
+            },
+            {
+                "angle": 21.723935891052907,
+                "magnitude": 45368.78524042436,
+                "measurement_mrid": "_c48d8d88-12be-4b15-8b44-eedc752250c6"
+            },
+            {
+                "measurement_mrid": "_4a316ed2-4e5f-4b8c-9b25-605f5c9e249c",
+                "value": 0
+            }
+            ]
+        }
+        },
+        "1248130805": {
+        "simulation_id": "559402036",
+        "message": {
+            "timestamp": 1535574872,
+            "measurements": [
+            {
+                "angle": -38.381605233862224,
+                "magnitude": 52769.16136465681,
+                "measurement_mrid": "_84541f26-084d-4ea7-a254-ea43678d51f9"
+            },
+            {
+                "angle": 21.723935891052907,
+                "magnitude": 45368.78524042436,
+                "measurement_mrid": "_c48d8d88-12be-4b15-8b44-eedc752250c6"
+            },
+            {
+                "measurement_mrid": "_4a316ed2-4e5f-4b8c-9b25-605f5c9e249c",
+                "value": 1
+            }
+            ]
+        }
+        }
+    }
 
 
-4. Rules
+
+
+3. Rules
 
 The rules application is started by the test manager and messages sent to
 simulation.input.[simulationId] and simulation.output.[simulationId] will be

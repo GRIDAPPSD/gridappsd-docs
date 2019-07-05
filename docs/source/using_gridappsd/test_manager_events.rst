@@ -1,10 +1,10 @@
 Test Manager Events
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 There are 3 types events supported by the TestManager and the platform along with a command to add them:
     1. CIM defined fault events, used when a line is down or for taking a piece of equipment out of service.  
     2. Communication outage events which simulates measurements or control message outages.
-    3. Command at specific time which sends commands to a piece of equipment to simulate reclosers.
+    3. Command at specific time which sends commands to a piece of equipment to simulate reclosers. WIP
 
 There are 2 commands to the TestManager:
     1. Update
@@ -32,19 +32,18 @@ PhaseConnectedFaultKind is an enumeration:
 
 .. code-block:: none
     :caption: Fault Events in Test Script JSON schema
-    :emphasize-lines: 3,5
 
     {
-        "faultMRID" : string,
-        "equipmentMRID" : string, 
-        "phases": string, 
-        "PhaseConnectedFaultKind" : string,
-        "rGround":double,
-        "xGround": double,
-        "rLineToLine": double,
-        "xLineToLine": double,
-        "timeInitiated":long,
-        "timeCleared":long
+        "PhaseConnectedFaultKind": string,
+        "FaultImpedance": {
+                        "rGround": float,
+                        "xGround": float
+        },
+        "ObjectMRID": string,
+        "phases": string,
+        "event_type": string,
+        "occuredDateTime": long,
+        "stopDateTime": long
     }
 ..
 
@@ -52,29 +51,19 @@ PhaseConnectedFaultKind is an enumeration:
 .. code-block:: JSON
    :caption: Fault Event Example in test script
 
-    {
-        "events" : [
-            {"faultMRID" : "1233",
-            "equipmentMRID" : "12344",
-            "phases": "AN",
-            "PhaseConnectedFaultKind" : "lineToGround",
-            "rGround":0.001,
-            "xGround":0.001,
-            "rLineToLine":0.0,
-            "xLineToLine":0.0,
-            "timeInitiated":1248156005,
-            "timeCleared":1248156008
-            },
-            {"faultMRID" : "1234",
-            "equipmentMRID" : "12345",
-            "phases": "AB",
-            "PhaseConnectedFaultKind" : "lineToLine",
-            "rGround":0.0,
-            "xGround":0.0,
-            "rLineToLine":0.001,
-            "xLineToLine":0.001,
-            "timeInitiated":1248156017,
-            "timeCleared":1248156020
+    {   
+        "command": "new_events",
+        "events" : [{
+                "PhaseConnectedFaultKind": "lineToGround",
+                "FaultImpedance": {
+                                "rGround": 0.001,
+                                "xGround": 0.001
+                },
+                "ObjectMRID": "235242342342342",
+                "phases": "ABC",
+                "event_type": "Fault",
+                "occuredDateTime": 1248130809,
+                "stopDateTime": 1248130816
             }
         ]
     }
@@ -140,26 +129,39 @@ Fault Commands sent from the Test Manager to the simulation
 Communication Event
 ^^^^^^^^^^^^^^^^^^^
 
-Communication Events are separate from the CIM events but we tried to keep pattern of the CIM events and as much commonality as possible. 
+Communication Outage events are separate from the CIM events but we tried to keep pattern of the CIM events and as much commonality as possible. 
 
 For reference this is the complete JSON schema of the internal Communication Event for the platform and goes between the Test Manager and the fncs_goss_bridge.py.
 
 .. code-block::  none
-   :caption: JSON Communication Event command for the TestManager
+   :caption: JSON Communication Outage schema command for the TestManager
 
     {  
-        "command":"CommEvent",
-        "simulation_id":int,
-        "message":{
-            "inputList":[ {"ObjectMRID":String,
-                        "attribute":String },...
-                    ],
-            "outputList":[MeasurementMRID,...],
-            "filterAllInputs":boolean,
-            "filterAllOutputs":boolean,
-            "timeInitiated":long,
-            "timeCleared":long
+        "allOutputOutage": boolean,
+        "allInputOutage": boolean,
+        "inputOutageList": [{"objectMRID":string, "attribute":string}],
+        "outputOutageList": [string],
+        "event_type": string,
+        "occuredDateTime": long,
+        "stopDateTime": long
+    }
+..
+
+.. code-block::  JSON
+   :caption: JSON Communication Outage command for the TestManager
+
+   {"command": "new_events",
+    "events": [
+        {
+            "allOutputOutage": false,
+            "allInputOutage": false,
+            "inputOutageList": [{"objectMRID":"_EF2FF8C1-A6A6-4771-ADDD-A371AD929D5B", "attribute":"ShuntCompensator.sections"}, {"objectMRID":"_C0F73227-012B-B70B-0142-55C7C991A343", "attribute":"ShuntCompensator.sections"}],
+            "outputOutageList": ["_5405BE1A-BC86-5452-CBF2-BD1BA8984093"],
+            "event_type": "CommOutage",
+            "occuredDateTime": 1248130819,
+            "stopDateTime": 1248130824
         }
+    ]
     }
 ..
 
@@ -167,36 +169,41 @@ The inputList is the list of objects that are the ObjectMRID of anything that ca
 
 The outputList is the list of measurements mrids for the simulations. 
 
-If filterAllInputs is True the inputList is not needed.
-If filterAllOutputs is True the outputList is not needed.
+If allInputOutage is True the inputList is not needed.
+If allOutputOutage is True the outputList is not needed.
 
-.. code-block::  none
+.. code-block:: JSON
    :caption: Communication Event to the Simulation Bridge
 
     {
-        "command":"CommEvent",
-        "input":{
-            "simulation_id":int,
-            "message":{
-                "timestamp":long,
-                "difference_mrid":String,
-                "reverse_differences":[],
-                "forward_differences":[{
-                    "object":String,
-                    "attribute":"FilterObject",
-                    "value":{
-                    "inputList":[ {"ObjectMRID":String,
-                                    "attribute":String },...
-                                ],
-                    "outputList":[MeasurementMRID,...],
-                    "filterAllInputs":boolean,
-                "filterAllOutputs":boolean,
-                    "timeInitiated":long,
-                    "timeCleared":long
-                    }
-                },...],
+    "command": "CommOutage",
+    "input": {
+        "timestamp": 1248130819,
+        "forward_differences": [
+        {
+            "allOutputOutage": false,
+            "allInputOutage": false,
+            "inputOutageList": [
+            {
+                "objectMRID": "_EF2FF8C1-A6A6-4771-ADDD-A371AD929D5B",
+                "attribute": "ShuntCompensator.sections"
+            },
+            {
+                "objectMRID": "_C0F73227-012B-B70B-0142-55C7C991A343",
+                "attribute": "ShuntCompensator.sections"
             }
+            ],
+            "outputOutageList": [
+            "_5405BE1A-BC86-5452-CBF2-BD1BA8984093"
+            ],
+            "faultMRID": "_ce5ee4c9-9c41-4f5e-8c5c-f19990f9cfba",
+            "event_type": "CommOutage",
+            "occuredDateTime": 1248130819,
+            "stopDateTime": 1248130824
         }
+        ],
+        "reverse_differences": []
+    }
     }
 ..
 
@@ -213,8 +220,7 @@ A value of -1 will cause the event to be scheduled immediately.
     :emphasize-lines: 6
 
     {  
-        "command": "update",
-        "simulation_id",int,
+        "command": "update_events",
         “message”:{
             "object":String, "FaultMRID"
             "attribute":"timeInitiated",
@@ -231,22 +237,18 @@ The status can be "scheduled", "inprogress", and "cleared".
 .. code-block:: none
     :caption: Query the for list of faults and status
 
-    {"queryMeasurement":"faults", “simulation_id”:int}
+    {"command":"query_events", "simulationID":int}
 ..
 
 .. code-block:: none
     :caption: Result JSON Schema
-    :emphasize-lines: 10
 
     { 
         "data": [
-            {“faultMRID" : String,
-            "simulation_id": int,
-            “faultType:”: String,
-            "fault": <Fault Object>,    
-            "timeInitiated":long,
-            "timeCleared":long,
-            "status": "scheduled"},  # "scheduled", "inprogress", "cleared"
+            {
+                <fault>,
+                "status": <status>  # SCHEDULED, INITIATED, CLEARED, CANCELLED
+            },...
         }
     }
 ..
@@ -256,22 +258,29 @@ The status can be "scheduled", "inprogress", and "cleared".
     :caption: Result CIM Fault Events example
 
     { 
-        "data":  [       
-            {"faultMRID" : "1233",
-            "simulation_id": 12399999,
-            “faultType:”: "CommEvent",
-            "fault":{
-                "equipmentMRID" : "12344",
-                "phases": "AN",
-                "PhaseConnectedFaultKind" : "lineToGround",
-                "rGround":0.001,
-                "xGround":0.001,
-                "rLineToLine":0.0,
-                "xLineToLine":0.0,
+        "data": [
+            {
+            "allOutputOutage": false,
+            "allInputOutage": false,
+            "inputOutageList": [
+                {
+                "objectMRID": "_EF2FF8C1-A6A6-4771-ADDD-A371AD929D5B",
+                "attribute": "ShuntCompensator.sections"
+                },
+                {
+                "objectMRID": "_C0F73227-012B-B70B-0142-55C7C991A343",
+                "attribute": "ShuntCompensator.sections"
+                }
+            ],
+            "outputOutageList": [
+                "_5405BE1A-BC86-5452-CBF2-BD1BA8984093"
+            ],
+            "faultMRID": "_ce5ee4c9-9c41-4f5e-8c5c-f19990f9cfba",
+            "event_type": "CommOutage",
+            "occuredDateTime": 1248130819,
+            "stopDateTime": 1248130824,
+            "status": "CLEARED"
             }
-            "timeInitiated":1248156005,
-            "timeCleared":1248156008,
-            "status": "scheduled"}, 
         ]
     }
 ..
@@ -284,19 +293,16 @@ WIP. Commands can be scheduled a point in time in the simulation.
 .. code-block:: none
     :caption: JSON scheduled command schema
 
-    {
-        "command": "update",
-        "input":{
-            "simulation_id":int,
+    {   
+        "command": "new_events",
+        "events":[{
                 "message":{
-                "timestamp":long,
-                "difference_mrid":String,
-                "reverse_differences":[<Object>],
-                "forward_differences":[<Object>]
-            }
-        },
-        "timeInitiated":long,
-        "timeCleared":long,
+                    "forward_differences":[<Object>],
+                    "reverse_differences":[<Object>]
+                },
+                "timeInitiated":long,
+                "timeCleared":long,
+        }]
     }
 ..
 
@@ -304,29 +310,29 @@ WIP. Commands can be scheduled a point in time in the simulation.
 .. code-block:: JSON
     :caption: Scheduled command example
 
-    { 
-        "commandToBeScheduled":
-        {
-            "simulation_id" : 12399999,
-            "message" : {
-                "timestamp" : "2018-01-08T13:27:00.000Z",
-                "difference_mrid" : "123a456b-789c-012d-345e-678f901a235c",
-                "reverse_differences" : [
-                        {
-                                "object" : "61A547FB-9F68-5635-BB4C-F7F537FD824E",
-                                "attribute" : "ShuntCompensator.sections",
-                                "value" : "1"
-                        }],
-                "forward_differences" : [
-                        {
-                                "object" : "61A547FB-9F68-5635-BB4C-F7F537FD824E",
-                                "attribute" : "ShuntCompensator.sections",
-                                "value" : "0"
-                        }]
-            }
-        },
-        "timeInitiated":1248156005,
-        "timeCleared":1248156008,
+    {
+        "command": "new_events",
+        "events":[{
+            "message": {
+                "forward_differences": [
+                    {
+                    "object": "_8D0EAC3F-AD56-C5A6-ED03-863DBB4A8C5F",
+                    "attribute": "ShuntCompensator.sections",
+                    "value": "0"
+                    }
+                ],
+                "reverse_differences": [
+                    {
+                    "object": "_8D0EAC3F-AD56-C5A6-ED03-863DBB4A8C5F",
+                    "attribute": "ShuntCompensator.sections",
+                    "value": "1"
+                    }
+                ]
+            },
+            "event_type": "ScheduledCommandEvent",
+            "occuredDateTime": 1248130812,
+            "stopDateTime": 1248130842
+            }]
     }
 ..
 
