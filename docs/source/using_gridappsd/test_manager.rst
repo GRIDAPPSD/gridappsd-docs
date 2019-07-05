@@ -1,6 +1,3 @@
-Test Manager
-------------
-
 The Test Manager is responsible for testing an application or service against different events or scenarios.
 The Test Manager Configuration is sent as part of the RequestSimulation. The expected results and events are sent to the Test Manager for processing.
 

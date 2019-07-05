@@ -1,6 +1,3 @@
-Test Manager Events
--------------------
-
 There are 3 types events supported by the TestManager and the platform along with a command to add them:
     1. CIM defined fault events, used when a line is down or for taking a piece of equipment out of service.  
     2. Communication outage events which simulates measurements or control message outages.
@@ -288,7 +285,7 @@ The status can be "scheduled", "inprogress", and "cleared".
 Scheduled Commands
 ^^^^^^^^^^^^^^^^^^
 
-WIP. Commands can be scheduled a point in time in the simulation.
+Commands can be scheduled a point in time in the simulation.
 
 .. code-block:: none
     :caption: JSON scheduled command schema
