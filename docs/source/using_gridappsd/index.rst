@@ -68,7 +68,7 @@ Hosting Application or Service
 .. include:: Developing_Apps.rst
 
 Test Manager Events
-------------------------------
+-------------------
 
 .. include:: test_manager_events.rst
 
@@ -76,4 +76,3 @@ Test Manager
 ------------
 
 .. include:: test_manager.rst
-
