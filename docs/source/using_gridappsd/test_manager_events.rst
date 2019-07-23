@@ -36,7 +36,7 @@ PhaseConnectedFaultKind is an enumeration:
                         "rGround": float,
                         "xGround": float
         },
-        "ObjectMRID": string,
+        "ObjectMRID": [string],
         "phases": string,
         "event_type": string,
         "occuredDateTime": long,
@@ -56,7 +56,7 @@ PhaseConnectedFaultKind is an enumeration:
                                 "rGround": 0.001,
                                 "xGround": 0.001
                 },
-                "ObjectMRID": "235242342342342",
+                "ObjectMRID": ["_9EF94B67-7279-21F4-5CEE-B2724E3C3FE6"],
                 "phases": "ABC",
                 "event_type": "Fault",
                 "occuredDateTime": 1248130809,
