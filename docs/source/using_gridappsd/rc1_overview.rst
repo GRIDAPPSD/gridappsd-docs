@@ -125,3 +125,23 @@ The added events for a simulation can be seen in the events view
     :align: left
     :alt: config-image
     :figclass: align-left
+	
+	
+Enable and disable no-op
+------------------------
+
+Registered applications are displayed in the Applications tab. User can disable or enable the applications from this screen.
+
+Click the disbale icon to disable no-op
+
+.. figure:: no-op_disable.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
+	
+Click the enable icon to enable no-op
+
+.. figure:: no-op_enable.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
