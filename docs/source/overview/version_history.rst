@@ -316,3 +316,114 @@ Version 2019.06.0
 	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.06.0
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/feature/1146
 	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.06.0
+
+Version 2019.07.0
+^^^^^^^^^^^^^^^^^
+
+
+1. Bugs Fixed
+
+	- Time series query filter are updated in the API as well documentation.
+	- Selecting houses is now working with the simulation.
+	- Following bugs resolved for Viz
+	
+		- Line name is not based on previously selected values.
+		- Removing a selected app-name closes input form
+		- Change Event Id to Event tag
+		- Change attribute to a multi-value select box
+		- Help-text 'Add input item' does not go away on CommOutage tab
+		- Object mrid is not correct for multiple phases selection.
+	- Pos added for load break switches 
+
+	
+2. New Features
+		
+	- Platform now stores input and output from services and applications output/input in time series data store.
+	- Simulation can run with new 9500 node model 
+	- Support for synchronous machines added in CIM model in blazegraph.
+	- End-to-end fault injecting and processing pipeline is now working.
+	- Powergrid api added to query object id, object dictionary and object measurements. 
+	- New keys added in glm file to support faults.
+	- Viz can display plot for new 9500 model.
+	- Added log api in gridappsd-python
+	- Measurement for switch positions for all models
+	- Explicit setting for manual mode in reg and capacitora in the RegulatingControl.mode attribute.
+	- GridAPPS base constainer has folowwing changes
+	
+		- Switch to openjdk
+		- New version of fncs 
+		- CZMQ_VERSION changeed to 4.2.0
+		- ZMQ_VERSION changes to 4.3.1
+		- GridLAB-D switched from feature/1146 to develop
+		
+
+3. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.07.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.07.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.07.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.07.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.4
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.5
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.06.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.07.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.07.0
+	
+	
+Version 2019.08.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Viz added capability to select power/voltage/tap measurments for custom plotting
+	- Control attributes are back for Capacitors
+	- Added Voltage Violation service that publishes list of measurement ids with per unit voltages that are out of range every 15 minutes
+	- Viz added display for Voltage Violation service output
+	- Viz can display Lot/Long coordinated for 9500 node model.
+	- Breaking Change: JSON format for timeseries query response is flattend out
+	- Resolved 500 Internal server error for storing simulation input.
+	- Houses are created and uploaded to Blazegraph for 123 node model
+	- Additonal column process_type added for logs to distinguish process id for simulation
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.08.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.08.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.08.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.08.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.5
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.5
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.08.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.08.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.08.0
+	
+Version 2019.08.1
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Viz: Change simulation pause button to start button when simulation completes.
+	- Bug fix: Simulation id dropdown is not showing selected id in Browse-data-logs.
+	- Bug fix: Timeseries queries returning same object multiple times. 
+	- Bug fix: Weather file containes only 10 minute data even if simulation duration is longer.
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.08.1
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.08.1
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.08.1
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.08.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.5
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.5
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.08.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.08.1
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.08.1

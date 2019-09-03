@@ -71,41 +71,42 @@ Allowed values for queryFilter are:
 Query Simulation Data
 ^^^^^^^^^^^^^^^^^^^^^
 
-Returns simulation input or output data based on query filters/
+Returns simulation input or output data based on query filters
 
 Example Request:
 ::
 
-	{"queryMeasurement": "PROVEN_MEASUREMENT",
- 	 "queryFilter": {"simulation_id": "751004304"},
-  	"responseFormat": "JSON"}
+	{"queryMeasurement": "simulation",
+ 	"queryFilter": {"simulation_id": "582881157"},
+	"responseFormat": "JSON"}
 
 
 Example Response for result format JSON:
 ::
 
-	{ "data": { "measurements": [ { "name": "PROVEN_MEASUREMENT", 
-	"points": [ { "row": { "entry": [ 
-				{ "key": "hasAngle", "value": "118.82725524902344" },
-				{ "key": "hasProvenMessage", "value": "http://proven.pnnl.gov/proven-message#2d8ce725-dc82-4ea7-a739-d6fe11d810e4" },
-				{ "key": "hasSimulationMessageType", "value": "OUTPUT" },
-				{ "key": "time", "value": "1541708366" },
-				{ "key": "hasMagnitude", "value": "2333.984130859375" },
-				{ "key": "hasMeasurement", "value": "http://proven.pnnl.gov/proven-message#fb18f671-5b2b-4a07-a21b-c39c2cc5a21b" },
-				{ "key": "hasMrid", "value": "_a8132cc6-52f7-4bae-be9e-8f28d9effcd3" },
-				{ "key": "hasSimulationId", "value": "290653535" } ] } },
-		{ "row": { "entry": [ 
-				{ "key": "hasAngle", "value": "25.29271125793457" }, 
-				{ "key": "hasProvenMessage", "value": "http://proven.pnnl.gov/proven-message#2d8ce725-dc82-4ea7-a739-d6fe11d810e4" }, 
-				{ "key": "hasSimulationMessageType", "value": "OUTPUT" }, 
-				{ "key": "time", "value": "1541708366" }, 
-				{ "key": "hasMagnitude", "value": "44411.1796875" }, 
-				{ "key": "hasMeasurement", "value": "http://proven.pnnl.gov/proven-message#fb41d8c5-7581-4282-aa29-c2b043d61b42" }, 
-				{ "key": "hasMrid", "value": "_c3728546-d175-489a-934f-54d662454e24" },
-				{ "key": "hasSimulationId", "value": "290653535" } ] } },
-	"responseComplete":true,
-	"id":"131754834"
-	}
+	{
+	"data": { "measurements": [{ "name": "simulation",
+			"points": [{ "row": { "entry": [
+				{ "key": "hasMeasurementDifference", "value": "FORWARD" },
+				{ "key": "hasSimulationMessageType", "value": "INPUT" },
+				{ "key": "difference_mrid", "value": "c65d4ba9-8689-4838-970c-2983b54ed2e6" },
+				{ "key": "simulation_id", "value": "582881157" },
+				{ "key": "time", "value": "1562614884" },
+				{ "key": "attribute", "value": "ShuntCompensator.sections" },
+				{ "key": "value", "value": "0.0" },
+				{ "key": "object","value": "_5405BE1A-BC86-5452-CBF2-BD1BA8984093" }]}},
+			{ "row": { "entry": [
+				{ "key": "hasMeasurementDifference", "value": "FORWARD" },
+				{ "key": "hasSimulationMessageType", "value": "INPUT" },
+				{ "key": "difference_mrid", "value": "c65d4ba9-8689-4838-970c-2983b54ed2e6" },
+				{ "key": "simulation_id", "value": "582881157" },
+				{ "key": "time", "value": "1562614884" },
+				{ "key": "attribute", "value": "ShuntCompensator.sections" },
+				{ "key": "value", "value": "0.0" },
+				{ "key": "object", "value": "_8D0EAC3F-AD56-C5A6-ED03-863DBB4A8C5F"}]}}
+	"responseComplete": true,
+	"id": "1927836780" }
+
 	
 Allowed values for queryFilter are:
 ::
@@ -126,4 +127,86 @@ Allowed values for queryFilter are:
 	attribute [string]
 	difference_mrid [string]
 	object [string]
+	value [number]
+
+Please find some sample requests with various query filters
+::
+	{"queryMeasurement": "simulation",
+ 	"queryFilter": {"simulation_id": "582881157", "hasSimulationMessageType": "INPUT"},
+	"responseFormat": "JSON"}
+
+	{"queryMeasurement": "simulation",
+ 	"queryFilter": {"simulation_id": "582881157", "angle": 23.706919634782313},
+	"responseFormat": "JSON"}
+	
+Query Sensor Service  Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns output of sensor sensor service.
+
+Example Request:
+::
+
+	{"queryMeasurement": "gridappsd-sensor-simulator",
+ 	"queryFilter": {"simulation_id": "582881157"},
+	"responseFormat": "JSON"}
+	
+Example Response for result format JSON:
+::	
+		{
+			"data": {
+			"measurements": [
+				{
+				"name": "gridappsd-sensor-simulator",
+				"points": [
+					{
+						"row": {
+						"entry": [
+							{
+								"key": "instance_id",
+								"value": "gridappsd-sensor-simulator-1564186315783"
+							},
+							{
+								"key": "hasSimulationMessageType",
+								"value": "OUTPUT"
+							},
+							{
+								"key": "measurement_mrid",
+								"value": "_0009caa4-23ef-41b9-9db7-624f3f47460c"
+							},
+							{
+								"key": "angle",
+								"value": "-152.44531328865978"
+							},
+							{
+								"key": "magnitude",
+								"value": "2470.4939175057075"
+							},
+							{
+								"key": "simulation_id",
+								"value": "1512566584"
+							},
+							{
+								"key": "time",
+								"value": "1564186297"
+							}
+							]
+							}
+					},.........]}]
+			},
+			"responseComplete": true,
+			"id": "597021681"
+		}
+
+
+Allowed values for queryFilter are:
+::
+
+	starttime [number] 
+	endtime [number]
+	measurement_mrid [string]
+	simulation_id [string]
+	instance_id
+	angle [number]
+	magnitude [number]
 	value [number]

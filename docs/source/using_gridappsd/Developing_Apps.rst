@@ -115,4 +115,54 @@ For service:
 
 	    volumes:
 	      - ~/git/[my_service_directory]/[my_service]:/gridappsd/services/[my_service]
-	      - ~/git/[my_service_directory]/[my_service]/[my_service.config]:/gridappsd/services/[my_service.config]
+	      - ~/git/[my_service_directory]/[my_service]/[my_service.config]:/gridappsd/services/[my_service.config]	 
+		  
+How to start a service
+^^^^^^^^^^^^^^^^^^^^^^
+*Note: This process will be simplified in future releases so user could start a service through API and UI for a simulation with or without an application.*
+
+Currently a service will be started by the platform only if it is a requirement for an application as described in the application config file under prereqs key.
+By default gridappsd-sensor-service and gridappsd-voltage-violation  services are available in GridAPPS-D docker container. 
+
+In order to start a service with an application (sample app in this example) follow these steps:
+
+1. Go into sample app container by executing
+::
+	
+	docker exec -it gridappsddocker_sample_app_1 bash
+
+2. Inside sample app container execute following commands 
+::
+	
+	apt-get update
+
+	apt-get install vim
+
+4. Edit sample_app.config and add service id to the prereqs as shown below:
+::
+	
+	"prereqs":["gridappsd-sensor-simulator"]
+
+*Note: Service id should match the value of "id" in service config file.* 
+
+5. Exit sample app container
+
+6. Restart sample app docker container by executing
+::
+	
+	docker restart gridappsddocker_sample_app_1
+
+7. Go into GridAPPS-D docker container by executing
+::
+	
+	docker exec -it gridappsddocker_gridappsd_1 bash
+
+8. Start platform by executing
+:
+
+	./run-gridappsd.sh
+	
+Now when you start a simulation with sample app the service defined in prereqs will start as well. 
+
+
+

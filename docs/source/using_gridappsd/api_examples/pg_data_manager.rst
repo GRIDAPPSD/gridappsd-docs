@@ -1,4 +1,8 @@
-The Powergrid Model Data Manager API allows you to query the powergrid model data store.  Six actions are available: Query_Model_names, Query, Query_Object, Query_Object_Types, Query_Model, and Put_Model
+The Powergrid Model Data Manager API allows you to query the powergrid model data store. 
+
+Query Request Queue
+^^^^^^^^^^^^^^^^^^^
+Query request should be sent on following queue: goss.gridappsd.process.request.data.powergridmodel
 
 Query Model Info
 ^^^^^^^^^^^^^^^^
@@ -247,11 +251,11 @@ Example Response:
 	
 Query Object Ids
 ^^^^^^^^^^^^^^^^
-*Not yet available* Returns details for a particular object based on the object Id.
+Returns details for a particular object based on the object Id.
 
 Allowed parameters are:
 
-- modelId (optional) - when specified it searches against that model, if empty it will search against all models
+- modelId - when specified it searches against that model, if empty it will search against all models
 - objectType (optional) – type of objects you wish to return details for.
 - resultFormat – XML/JSON/CSV ,  Will return result bindings based on the select part of the query string.
 
@@ -259,69 +263,120 @@ Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
 
 	{
+		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
 		"requestType": "QUERY_OBJECT_IDS",
 		"resultFormat": "JSON",
-		"objectType": "......."
+		"objectType": "LoadBreakSwitch"
 	}
 	
 Example Response:
 ::
 	
-		{
-		"objectIDs": ["_49AD8E07-3BF9-A4E2-CB8F-C3722F837B62",
-		"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
-		"_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
-		"_67AB291F-DCCD-31B7-B499-338206B9828F",
-		"_9CE150A8-8CC5-A0F9-B67E-BBD8C79D3095",
-		"_C1C3E687-6FFD-C753-582B-632A27E28507"]
+	{
+	  "objectIds": [
+		"_0D2157F2-CD4D-9F68-9212-F663C472AF1C",
+		"_18D43D9E-36D1-3A2C-AC8F-439232FC1EE2",
+		"_323C2BDB-69AA-A10C-CEC5-628C77B83268",
+		"_D7AA7B55-E700-F1E8-B3EB-CB2FB07F8A37",
+		.......
+	  ]
 	}
 	
 
-Query Object Dictionary By Type
+Query Object Dictionary 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-*Not yet available* Returns details for either all objects of a particular type or a particular object based on the object Id in the same format as the model dictionary file.
+Returns details for either all objects of a particular type or a particular object based on the object Id.  Either the object type or id is required, but not both.
 
 Allowed parameters are:
 
-- objectType – type of objects you wish to return details for.
-- modelId (optional) - when specified it searches against that model, if empty it will search against all models
-- objectID (optional) - mrid of the object you wish to return details for.
+- modelId - model that you wish to return objects from.
+- objectType (not required if objectId is set) – type of object you wish to return details for.
+- objectId (not required if objectType is set) - mrid of the object you wish to return details for, if set this will override objectType.  
 - resultFormat – XML/JSON ,  Will return result bindings based on the select part of the query string.
 
 Example Request:   goss.gridappsd.process.request.data.powergridmodel
 ::
 
 	{
-		"requestType": "QUERY_OBJECT_IDS",
+		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+		"requestType": "QUERY_OBJECT_DICT",
 		"resultFormat": "JSON",
-		"objectType": "Capacitor.  TODO what is cim type name......"
+		"objectType": "LinearShuntCompensator",
+		"objectId": "_EF2FF8C1-A6A6-4771-ADDD-A371AD929D5B"
 	}
 	
 Example Response:
 ::
 	
 	{
-		"name": "c83",
-		"mRID": "_8B8DB36D-CF7F-8C11-6C9C-E24B59C02366",
-		"CN1": "83",
-		"phases": "ABC",
-		"kvar_A": 200.0,
-		"kvar_B": 200.0,
-		"kvar_C": 200.0,
-		"nominalVoltage": 4160.0,
-		"nomU": 4160.0,
-		"phaseConnection": "Y",
-		"grounded": true,
-		"enabled": false,
-		"mode": null,
-		"targetValue": 0.0,
-		"targetDeadband": 0.0,
-		"aVRDelay": 0.0,
-		"monitoredName": null,
-		"monitoredClass": null,
-		"monitoredBus": null,
-		"monitoredPhase": null
-	},....	
+	 [
+	   {
+		"id": "_2199D08B-9352-2085-102F-6B207E0BEBA3",
+		"ConductingEquipment.BaseVoltage": "_C0A00494-BB68-7476-57E3-9741545AE287",
+		"Equipment.EquipmentContainer": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+		"IdentifiedObject.mRID": "_2199D08B-9352-2085-102F-6B207E0BEBA3",
+		"IdentifiedObject.name": "capbank0a",
+		"PowerSystemResource.Location": "_19B9D45D-F556-01D4-8094-3AE64D5E63A0",
+		"LinearShuntCompensator.b0PerSection": "100",
+		"LinearShuntCompensator.bPerSection": "0.0077160494",
+		"LinearShuntCompensator.g0PerSection": "0",
+		"LinearShuntCompensator.gPerSection": "0",
+		"ShuntCompensator.aVRDelay": "100",
+		"ShuntCompensator.grounded": "true",
+		"ShuntCompensator.maximumSections": "1",
+		"ShuntCompensator.nomU": "7200",
+		"ShuntCompensator.normalSections": "1",
+		"ShuntCompensator.phaseConnection": "PhaseShuntConnectionKind.Y",
+		"type": "LinearShuntCompensator"
+	   },....	
+	 ]
+	}
+
+Query Object Measurements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Returns details for measurements within a model, can be for all objects of a particular type or for those connected to a particular object based on the objectId. If neither objectType or objectId is provided it will provide all measurements belonging to the model.
+
+Allowed parameters are:
+
+- modelId - model that you wish to return measurements from.
+- objectType (optional) – type of object you wish to return measurements for.
+- objectId (optional) - mrid of the object you wish to return measurements for.  If set this will override objectType. 
+- resultFormat – XML/JSON ,  Will return result bindings based on the select part of the query string.
+
+Example Request:   goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+		"requestType": "QUERY_OBJECT_MEASUREMENTS",
+		"resultFormat": "JSON",
+		"objectType": "LinearShuntCompensator",
+		"objectId": "_2199D08B-9352-2085-102F-6B207E0BEBA3"
+	}
+	
+Example Response:
+::
+
+	[
+      {
+            "measid": "_59d526ff-32c0-4947-ab58-45f283636786",
+            "type": "PNV",
+            "class": "Analog",
+            "name": "ACLineSegment_ln5532752-2_Voltage",
+            "bus": "m1047534",
+            "phases": "A",
+            "eqtype": "ACLineSegment",
+            "eqname": "ln5532752-2",
+            "eqid": "_7A02B3B0-2746-EB24-45A5-C3FBA8ACB88E",
+            "trmid": "_6B5B889C-E7E1-3444-CC63-7A589AC0DA8F"
+        },....	
+	 ]
+	
+
+
+
+
+
 
 Put Model
 ^^^^^^^^^
