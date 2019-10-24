@@ -1,9 +1,5 @@
 Solar Forecasting Application
 -----------------------------
-<<<<<<< HEAD
-
-=======
->>>>>>> efa7a8dd1286838b0bca0647fcaa85d26fa65065
 
 Objectives
 ~~~~~~~~~~
