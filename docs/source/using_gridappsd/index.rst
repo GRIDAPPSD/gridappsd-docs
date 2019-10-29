@@ -69,7 +69,7 @@ Services
 The `GridAPPSD's Sensor Simulator` simulates real devices based upon the magnitude of "prestine" simulated values.
 Currently the sensor service supports angle and magnitude measurements.
 
-'_GridAPPS-D DNP3 Service <https://gridappsd-dnp3.readthedocs.io/en/develop/>'
+'GridAPPS-D DNP3 Service <https://gridappsd-dnp3.readthedocs.io/en/develop/>'__
 The `GridAPPS-D DNP3 Service` integrates GridAPPS-D with DNP3 based commercial tools to enable the CIM and DNP3 data exchange of the devices.
 
 Hosting Application
