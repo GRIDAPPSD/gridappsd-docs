@@ -319,23 +319,50 @@ Response:
 
 Request YBus Export Configuration file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Generates file containing ybus configuration for the selected simulation.  Simulation must be running.
-
-- Required: configurationType, parameters[simulation_id]
+Generates file containing ybus configuration for the given model or simulation.
 
 Request: goss.gridappsd.process.request.config
+
 ::
 
   {
     "configurationType":"YBus Export",
     "parameters":{"simulation_id":"12345"}
     }
+	
+If requested for a simulation then simulation id is mandatory.
+Otherwise use model_id as mentioned next.	
+
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
+		}
+	}
+
+Additional paramters can be provided with model_id as mentioned in next request. 
+  
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "i_fraction": "1.0",
+      "z_fraction": "0.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "load_scaling_factor": "1.0",
+      "schedule_name": "ieeezipload",
+      "p_fraction": "0.0"
+    }
+  }
 
 Response:
 ::
 
   {
-        "yParseFilePath": [
+        "yParse": [
             "Row,Col,G,B",
             "1,1,517.6253721,-539.2591296",
             "2,1,-3.438703156,9.070554234",
@@ -345,4 +372,13 @@ Response:
             "85,1,1.801223903,-4.751238599",
             "86,1,3.057563114,-5.798887966"
 	    ..........
-
+		],
+		"nodeList": [
+		  "\"97.1\"",
+		  "\"97.2\"",
+		..........
+		],
+		"summary": [
+		   "DateTime, .......
+		]
+	}
