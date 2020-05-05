@@ -213,3 +213,25 @@ Allowed values for queryFilter are:
 	angle [number]
 	magnitude [number]
 	value [number]
+
+Query Historical Sensor Service Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A docker image is available that containes the pre-populated historical data generated from sensor service for 9500 node model.
+It containes data with following details:
+
+- Start time:  Saturday, July 13, 2013 8:00:02 AM (1373727602)
+
+- End time: Friday, July 19, 2013 3:12:23 PM (1374271943).
+
+- Simulation Id: 890162203
+
+Follow these steps to access historical data:
+
+1. Clone gridappsd-docker repo 
+
+2. Change the influxdb image in docker-compose.yml file to gridappsd/influxdb:historical
+
+3. Execure ./run.sh -t <release tag>
+
+4. Use Query Sensor Service Data API to request data. 
