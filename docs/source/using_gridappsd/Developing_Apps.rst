@@ -112,12 +112,15 @@ Add the following to the file:
 
 Use image name from step 4 instead of sample_app in line 1 and 2.
 		
-**7. Start platform**
+**7. Start platform and application container**
 
 ::
   
   cd gridappsd-docker
   ./run.sh 
+  
+This script starts application container along with platform. 
+Application container has built-in code that allows application to register with GridAPPS-D platform when it starts.
   
 **8. Verify that application container is running**
 
