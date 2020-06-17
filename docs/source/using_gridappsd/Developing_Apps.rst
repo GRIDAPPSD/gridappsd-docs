@@ -65,7 +65,7 @@ Where,
  - **outputs** is the list of input topics application is publishing to. *For future use. Leave it as in the example for now*.
  - **options** are the run time arguments required by the application. Available options are: (i) simulationId: Unique identifier for the simulation, (ii) request: Simulation request sent by the user.
  - **type** defines the type fo the application which can be PYTHON or EXE.
- - **execution_path is the path of the main file that starts the application relative to the top-most folder. In this example it would be the path relative to gridappsd-sample-app folder.**
+ - **execution_path** is the path of the main file that starts the application relative to the top-most folder. In this example it would be the path relative to gridappsd-sample-app folder.
  - **launch_on_startup** is true if application needs to be started as the platform starts and false if application needs to be started with a simulation. 
  - **prereqs** is list of GridAPPS-D services that need to be started before starting the application. Leave it as empty list [] if no such services are required. 
    Services such as FNCS and FNCS-GOSS-BRIDGE are started by default with a simuolation so not needed to be specified here. 
