@@ -655,8 +655,8 @@ Version 2020.04.0
 	- Viz app: Updated to use simulation timestamp for voltage violation instead of current time.	
 	- Viz app: Show "Simulation starting" message before simulation is started and hide the Pause/Stop buttons.
 	- Powergrid model: Added scripts and *uuid.dat files to maintain persistent mRID values
-	- Powergrid model: Updated cim2glm version to 18.0.2
 	- Powergrid model: Supporting OverheadLineUnbalanced, ganged regulators and unknown spacings for 1-phase and 2-phase line. 
+	- Integration testing infrastructure create with PyTest and Travis. 
 		
 		
 2. Source Code
@@ -683,6 +683,9 @@ Version 2020.05.0
 	- Made changed to work with multiple load profiles measurements in InfluxDB.
 	- Corrected issue of no player file if schedule name is not passed in request.
 	- Fix stomp client initialization problem for Viz app on firefox where it was getting stuck in connecting state for a long time.
+	- Testing summary added to integration testing. 
+	- Integration tests added for power grid and simulation API.
+	- AWS summary web page added for integration testing report.
 	
 	
 		
@@ -708,11 +711,13 @@ Version 2020.07.0
 		
 	- Updated opendss to version 1.2.11
 	- Added PAUSEd to ProcessStatus list to resolve testing issue.
-	- Updated TestManager to include comparing expected results between output of 2 simulations.
-	- Updated TestManager to include comparing currently running simulation to result of previously ran simulation. 
+		- Updated TestManager to include comparing expected results between output of 2 simulations.
+		- Updated TestManager to include comparing currently running simulation to result of previously ran simulation. 
 	- Added a new setting to Viz UI that allows toggling logging.
 	- Fixed the problem in Viz where unselecting selected services didn't remove them from the simulation configuration object
 	- Powergrid model: Bumped mysql-connector-java from 5.1.40 to 8.0.16 in /CIM/cim-parser	
+	- More integration tests added for power grid and simuation API.
+	- Integration tests added for alarms and timeseries API.
 		
 2. Source Code
 
