@@ -642,3 +642,90 @@ Version 2020.03.0
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
 	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.03.0
 
+Version 2020.04.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Updated Cim2GLM library version to 18.0.3
+	- Added Configuration handler for generating limits.json file
+	- Increased web socket message size
+	- Corrected issue where phase count is incorrect for phase s1, s2 loads
+	- Corrected json parse method for TimeSeriesRequest class.
+	- Viz app: Updated to use simulation timestamp for voltage violation instead of current time.	
+	- Viz app: Show "Simulation starting" message before simulation is started and hide the Pause/Stop buttons.
+	- Powergrid model: Added scripts and *uuid.dat files to maintain persistent mRID values
+	- Powergrid model: Updated cim2glm version to 18.0.2
+	- Powergrid model: Supporting OverheadLineUnbalanced, ganged regulators and unknown spacings for 1-phase and 2-phase line. 
+		
+		
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.04.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.04.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.04.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.04.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.04.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.04.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.04.0
+	
+Version 2020.05.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Updated YBus export to include model_id as parameter
+	- Made changed to work with multiple load profiles measurements in InfluxDB.
+	- Corrected issue of no player file if schedule name is not passed in request.
+	- Fix stomp client initialization problem for Viz app on firefox where it was getting stuck in connecting state for a long time.
+	
+	
+		
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.05.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.05.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.05.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.05.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.05.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.05.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.05.0
+	
+Version 2020.07.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Updated opendss to version 1.2.11
+	- Added PAUSEd to ProcessStatus list to resolve testing issue.
+	- Updated TestManager to include comparing expected results between output of 2 simulations.
+	- Updated TestManager to include comparing currently running simulation to result of previously ran simulation. 
+	- Added a new setting to Viz UI that allows toggling logging.
+	- Fixed the problem in Viz where unselecting selected services didn't remove them from the simulation configuration object
+	- Powergrid model: Bumped mysql-connector-java from 5.1.40 to 8.0.16 in /CIM/cim-parser	
+		
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.07.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.07.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.07.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.07.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.07.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.07.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.07.0
+
