@@ -587,7 +587,7 @@ Version 2020.02.0
 
 1. New Features
 		
-	- Alarms status is published is Open/Close instead of 0/1.
+	- Alarms status is published as Open/Close instead of 0/1.
 	- Added resume/pause-at API for simulation.
 	- Added the EnergyConsumer.p attribute as a writable property in the FNCS GOSS Bridge
 	- Fixed floating switches issue on Viz app. 
@@ -597,7 +597,6 @@ Version 2020.02.0
 	- Operator login issue resolved.
 	- First integration test added in gridappsd-testing repo.
 	
-		
 2. Source Code
 
 	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.02.0
