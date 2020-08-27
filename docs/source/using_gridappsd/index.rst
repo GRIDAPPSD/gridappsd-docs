@@ -37,6 +37,9 @@ Where no Python API function is mentioned, following generic functions can be us
 	get_response(self, topic, message, timeout=5)
 	subscribe(self, topic, callback, id=None)
 
+Authenticating
+-------------------
+.. include:: api_examples/authentication.rst
 
 Powergrid Model API
 -------------------
