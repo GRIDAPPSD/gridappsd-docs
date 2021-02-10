@@ -854,10 +854,10 @@ Version 2020.12.0
 1. New Features
 		
 	- Increase AMQ topic permissions for all users until more specific permissions have been defined
-    - Update configs to support the token based authentication
+	- Update configs to support the token based authentication
 	- Updated to new version of cim2glm
 	- Updated to support change in goss-core where it makes the decision to use a token in the gossclient a variable that must be set
-    - Fixed sendError change that hadn't been updated in ProcessEvent
+	- Fixed sendError change that hadn't been updated in ProcessEvent
 	- Updated log api to include process type
 	- Viz: Updated to use token-based authentication
 	- Viz: Added functionality to automatically reconnect to the platform when it is restarted
