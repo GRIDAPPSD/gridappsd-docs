@@ -828,7 +828,7 @@ Version 2020.11.0
 	- Viz: Added buttons to zoom in and out on plots
 	- gridappsd-python: Updates made for integration test runs
 	- Cim2glm: Added repeatable randomization and reusable mRID for houses
-	- Cim2glm: Saved SON files with all node coordinates
+	- Cim2glm: Saved JSON files with all node coordinates
 	- Cim2glm: added missing s2 phase
 	- Cim2glm: Made the SoC meaurement mRID persistent
 	- Cim2glm: Fixes made for maven builds	
