@@ -823,8 +823,8 @@ Version 2020.11.0
 	- Querying simulation file to use weather data for  startime-1 minute
 	- Moved state-estimator to gridappsd base container
 	- Integration tests added for APIs
-	- Viz: Changed how notifications UI
-	- Viz: Updated redering positions for reverse arrows for transformers
+	- Viz: Changes made to notifications UI
+	- Viz: Updated rendering positions for reverse arrows for transformers
 	- Viz: Added buttons to zoom in and out on plots
 	- gridappsd-python: Updates made for integration test runs
 	- Cim2glm: Added repeatable randomization and reusable mRID for houses
@@ -879,6 +879,76 @@ Version 2020.12.0
 	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.12.0
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
 	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.12.0
+	
+Version 2021.02.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Added HELICS as a simulator. This included adding HELICS in GridAPPS-D docker container and adding HELICS service configuration file
+	- Added HELICS-GOSS bridge to translate control and measurement messages between HELICS and platform.
+	- Generated HELICS configurations for GridLAB-D
+	- Added unit testing framework for the HELICS-GOSS bridge
+	- Added SoC support to the HELICS-GOSS bridge.
+	- Updated Test Manager to publish results as they are processed intead of at the end of the simulation.
+	- Updated services to use platform log level
+	- Added test users to test various roles
+	- Updated to use username/password from environment variables instead of hardcoded in soruce code
+	- Fixed APIs where response was not correct when selecting response format as XML
+	- Added OCHRE house simulator in the GridAPPSD docker container. Tested it with GridLAB-d and HELICS. 
+	- Corrected naming of S2 69kV breaker names to match sub-transmission diagram
+	- Updated IEEE 13Assets model. Line length issue was fixed in opendsscmd 1.2.15
+	- Viz: Switched the arrow directions of selected lines and switches to display power flow direction.
+	- Viz: Plotting the Time Series Simulation Vs. Time Series Simulation results.
+	- Sample app updated to use token-based authentication. 
+	- Updated gridappsd-python library for token-based authentication	
+	- Added tests for configuration and power grid APIs
+	- 
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.02.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.02.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.02.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.02.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.7.3
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.02.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.02.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.02.0
+	
+Version 2020.03.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Platform switched from using Cim2Glm to CimHub library for power grid APIs.
+	- Powergrid-Models repository refactored to contianer only models.
+	- CimHub repository refactored to contain CimHub library and related utility functions
+	- Resolved issue regarding clean exit of HELICS on simulation stopped by user
+	- Resolved issue with Proven storing test manager input messages
+	- Viz: added timezome support
+	- Viz: Resolved issues with powerflow direction arrows
+	- Updated documentaiton on CimHub
+	- Added integration tests for configuration and alarm API
+		
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.03.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.03.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.03.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.03.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.7.4
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.03.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.03.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.03.0
 
 
 
