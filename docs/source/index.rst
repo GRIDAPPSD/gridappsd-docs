@@ -6,18 +6,29 @@ GridAPPS-D's Documentation
 
 .. image:: GridAPPS-D_Logo.png
 
-.. toctree::
-   :maxdepth: 2
+This will be on the main page here!
 
-   overview/index
-   installing_gridappsd/index
-   using_gridappsd/index
-   system_confguration/index
-   developer_resources/index
-   data_model/index
-   hosted_applications/index
-   api_docs/index
-   license/license
+
+.. toctree::
+   :caption: Installation & Runtime
+   :hidden:
+   :titlesonly:
+   :maxdepth: 1
+
+   installation/virtual-machine-docker-setup
+   installation/installing-gridappsd
+   installation/running-gridappsd
+
+
+.. toctree::
+   :caption: GridAPPS-D Overview
+   :hidden:
+   :titlesonly:
+   :maxdepth: 1
+
+   overview/gridappsd-introduction
+
+
    
 Indices and tables
 ==================

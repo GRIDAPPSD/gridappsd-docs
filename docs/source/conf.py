@@ -36,7 +36,7 @@ sys.path.insert(0, os.path.abspath('../../applications'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'javasphinx',
+    # 'javasphinx',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
