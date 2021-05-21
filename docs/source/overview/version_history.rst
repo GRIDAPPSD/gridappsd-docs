@@ -920,7 +920,7 @@ Version 2021.02.0
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
 	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.02.0
 	
-Version 2020.03.0
+Version 2021.03.0
 ^^^^^^^^^^^^^^^^^
 
 1. New Features
@@ -937,19 +937,37 @@ Version 2020.03.0
 		
 2. Source Code
 
-	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.03.0
-	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.03.0
-	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.03.0
-	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.03.0
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2021.03.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2021.03.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2021.03.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2021.03.0
 	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.7.4
 	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
 	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
-	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.03.0
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2021.03.0
 	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
-	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.03.0
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2021.03.0
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
-	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.03.0
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2021.03.0
 
+Version 2021.04.0
+^^^^^^^^^^^^^^^^^
 
+1. New Features
+		
+	- Platform added the capability for Applications to send Ochre commands to the simulations.
+	- Powergrid-Models added IEEE 13 OCHRE model update.
+	- Resolved issue with Proven write simultion input
+		
+2. Source Code
 
-
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2021.04.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2021.04.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2021.04.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2021.04.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.8.1
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2021.04.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2021.04.0
