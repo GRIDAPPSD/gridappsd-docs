@@ -39,7 +39,6 @@ This will be on the main page here!
 
    api_usage/3.1--Lesson-3.1--API-Communication-Channels
    api_usage/3.2--Lesson-3.2--API-Message-Structure
->>>>>>> Stashed changes
 
 
    
