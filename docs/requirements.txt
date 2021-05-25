@@ -1,5 +1,5 @@
-javasphinx
 sphinx
+nbsphinx
 sphinx-autobuild
 sphinx-rtd-theme
 recommonmark
