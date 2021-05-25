@@ -34,10 +34,6 @@ release = '2021_05.0'
 extensions = [
     'nbsphinx',
     'sphinx.ext.autodoc',
-<<<<<<< Updated upstream
-    # 'javasphinx',
-=======
->>>>>>> Stashed changes
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
