@@ -9,26 +9,6 @@ GridAPPS-D's Documentation
 This will be on the main page here!
 
 
-<<<<<<< Updated upstream
-.. toctree::
-   :caption: Installation & Runtime
-   :hidden:
-   :titlesonly:
-   :maxdepth: 1
-
-   installation/virtual-machine-docker-setup
-   installation/installing-gridappsd
-   installation/running-gridappsd
-
-
-.. toctree::
-   :caption: GridAPPS-D Overview
-   :hidden:
-   :titlesonly:
-   :maxdepth: 1
-
-   overview/gridappsd-introduction
-=======
 .. toctree::
    :caption: Installation & Runtime
    :maxdepth: 2
