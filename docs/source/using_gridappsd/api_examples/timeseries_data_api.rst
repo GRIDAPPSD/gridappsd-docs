@@ -20,36 +20,34 @@ Example Request:
 Example Response for result format JSON:
 ::
 
-	{ "data": { "measurements": [ { "name": "weather",
-	  "points": [ { "row": { "entry": [ 
-		 			{ "key": "Diffuse","value": "-0.006386875" }, 
-		 			{ "key": "AvgWindSpeed","value": "0.0" }, 
-		 			{ "key": "TowerRH", "value": "86.8" },
-		    		{ "key": "long", "value": "\"105.18 W\"" },
-		    		{ "key": "MST","value": "00:00" },
-		    		{ "key": "TowerDryBulbTemp","value": "13.316" },
-		    		{ "key": "DATE", "value": "1/1/2013" },
-		    		{ "key": "DirectCH1", "value": "-0.0402521765" },
-		        	{ "key": "GlobalCM22", "value": "-0.037676152399999996" },
-		         	{ "key": "AvgWindDirection", "value": "0.0" },
-		          	{ "key": "time", "value": "1357048800" },
-		           	{ "key": "place", "value": "\"Solar Radiation Research Laboratory\"" },
-		            { "key": "lat", "value": "\"39.74 N\"" } ] } },
-	           	  { "row": { "entry": [ 
-	           	 	{ "key": "Diffuse","value": "-0.005538233499999999" },
-	              	{ "key": "AvgWindSpeed", "value": "0.0" },
-	               	{ "key": "TowerRH", "value": "86.9" },
-	               	{ "key": "long", "value": "\"105.18 W\"" },
-	                { "key": "MST", "value": "00:01" },
-	                { "key": "TowerDryBulbTemp", "value": "13.406" },
-	                { "key": "DATE", "value": "1/1/2013" },
-	                { "key": "DirectCH1", "value": "-0.0395396335" },
-	                { "key": "GlobalCM22", "value": "-0.0369521827" },
-	                { "key": "AvgWindDirection", "value": "0.0" },
-	                { "key": "time", "value": "1357048860" },
-	                { "key": "place", "value": "\"Solar Radiation Research Laboratory\"" },
-	                { "key": "lat", "value": "\"39.74 N\"" } ] } } ] } ] },
-	  "responseComplete": true, "id": "1111869534" }
+	{ "data": [ { "Diffuse": 2.5305959999999996, 
+			"AvgWindSpeed": 0, 
+			"TowerRH": 70.65, 
+			"long": "105.18 W", 
+			"MST": "08:00", 
+			"TowerDryBulbTemp": 16.124, 
+			"DATE": "1/1/2013", 
+			"DirectCH1": 0.08549150370000001, 
+			"GlobalCM22": 2.53962588, 
+			"AvgWindDirection": 0, 
+			"time": 1357048800, 
+			"place": "Solar Radiation Research Laboratory", 
+			"lat": "39.74 N" }, 
+		{ "Diffuse": 2.6431350599999996, 
+			"AvgWindSpeed": 0, 
+			"TowerRH": 70.41, 
+			"long": "105.18 W", 
+			"MST": "08:01", 
+			"TowerDryBulbTemp": 15.908, 
+			"DATE": "1/1/2013", 
+			"DirectCH1": 0.045951777299999996, 
+			"GlobalCM22": 2.6501118499999996, 
+			"AvgWindDirection": 0, 
+			"time": 1357048860, 
+			"place": "Solar Radiation Research Laboratory", 
+			"lat": "39.74 N" } ], 
+	  "responseComplete": true, 
+	  "id": "1998314042" }
 
 Allowed values for queryFilter are:
 ::
@@ -114,7 +112,7 @@ Allowed values for queryFilter are:
 	Both input and output message type:
 	starttime [number] 
 	endtime [number]
-	measurement_mrid [string]
+	measurement_mrid [string] or [array of string values]
 	simulation_id [string]
 	hasSimulationMessageType ["OUTPUT" | "INPUT"]
 	
@@ -138,6 +136,11 @@ Please find some sample requests with various query filters
 	{"queryMeasurement": "simulation",
  	"queryFilter": {"simulation_id": "582881157", "angle": 23.706919634782313},
 	"responseFormat": "JSON"}
+	
+	{"queryMeasurement":"simulation",
+	"queryFilter":{"simulation_id":"1743450224",
+	"measurement_mrid":["_01625641-d9ae-4c34-8302-69a9620ec69d","_ffd6abc7-159d-4f6d-868b-7bf7b087ab85"]},
+	"responseFormat":"JSON"}
 	
 Query Sensor Service  Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

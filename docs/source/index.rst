@@ -27,4 +27,4 @@ Indices and tables
 * :ref:`search`
 
 .. |GridAPPS-D Logo| image:: GridAPPS-D_Logo.png
-	:scale: 50 %
+    :scale: 50 %

@@ -427,3 +427,189 @@ Version 2019.08.1
 	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.08.1
 	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
 	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.08.1
+	
+Version 2019.09.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Fault Processing: Faults are working on radial feeders. 
+	- Note: Faults are not working on meshed systems. If you have a meshed system then send switch open message to simulate the fault.
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.09.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.09.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.09.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.09.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.5
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.5
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.09.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.09.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.09.0
+
+Version 2019.09.1
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- BREAKING CHANGE: Measurements in simulation output message changed from array to dictionary.
+	- Simulation are now working for 9500 model with houses.
+	- Added missing measurement in blazegraph for houses.
+	- Voltage violation service and Viz app updated to work with new simulation output format.
+	- Faults are working with 9500 model.
+	- Viz app: User can select services and their input parameters in simulation request form.
+	- Viz app: Y-axis label corrected if plot value is same during the simulation run.
+	- Simulation request API updated to take user input parameters for services. 
+	- Timezone corrected for pre-loaded weather data. 
+	- Operational limit set on the power grid models in blazegraph. 
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.09.1
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.09.1
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.09.1
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.09.1
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.09.1
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.09.1
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.09.1
+	
+Version 2019.10.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Alarms service created. It publishes alarm whenver a switch or capacitor is opened or closed. It is added as a pre-requisite for sample app.
+	- Load profile data pre-loaded in timeseries data store InfluxDB. 
+	- Load profile file ieeezipload.player is created dynamically based on simulation start time and duration.
+	- API updated in platform and Proven to query load profile data.
+	- Timeseries API updated to accept timestamps in seconds instead of micro or nanosecond.
+	- Timeseries API updated to accept query filters in an array instead of single value. 
+	- Viz app: User can search and highlight objects on network by name and mrid.
+	- Viz app: User can re-center network graph.
+	- Viz app: Displays alarms in a saperate tab when simulation is running. Notifies when a new alarm is received in alarm tab. 
+	- Viz app: User can upload scheduled commands json file with communication outage and faults.
+	- Viz app: Switches are displayed as closed/opened based on simulation output value.
+	- Viz app: Display image for switches are changes to green/red squares and moved between nodes.
+	- Bug fixes in DSS configuration.
+	- GridLAB-D updated to latest develop version.
+	- OpenDSSCmd updated to 1.2.3.
+	- Powergrid models - Updated Generator.dss to include kVA for generators. 
+	- Added kva base to glm file, so setting kw=0 does not make the kva base also 0.
+	- Internal house loads added. Schedule file is created for simulation when useHouses=true. 
+	- Sensor service bugs fixed.
+	- API added to export Vnom opendss file. 
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.10.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.10.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.10.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.10.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.10.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.10.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.10.0
+
+Version 2019.12.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Updated and documented MRID UUID generator to ensure compliance with UUID 4
+	- Integrate DNP3 service with GridAPPS-D container
+	- Created API to get user role based on login
+	- Added a user for testmanager to distinguish between simulation commands and alarms
+	- Removed hardcoded corrdinate identifcation from Viz
+	- Added capability to change model state before starting a simulation.
+	- Added feature on UI to upload a file with faults and comunication output
+	- Created user login page on UI 
+	- Added light/dark toggle themeon UI 
+	- Wrote a SWING_PQ node for each potential island in power grid model.
+	- Fixed issues for app eveluations as reported by app developers or evluation team
+	- Updated ci/cd scripts for repositories to support travis.ci updates
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2019.12.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2019.12.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2019.12.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2019.12.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2019.12.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2019.12.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2019.12.0
+	
+Version 2020.01.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Alarms are varified before publishing.
+	- Fixed floating switches issue on Viz app. 
+	- Release process documeted at gridappsd-docker-build repository readme
+	- Created an automated, repeatable way to upload data in blazegraph
+	- Documented model state update for starting a simulation 
+		
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.01.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.01.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.01.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.01.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.01.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.01.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.01.0
+	
+Version 2020.02.0
+^^^^^^^^^^^^^^^^^
+
+1. New Features
+		
+	- Alarms status is published as Open/Close instead of 0/1.
+	- Added resume/pause-at API for simulation.
+	- Added the EnergyConsumer.p attribute as a writable property in the FNCS GOSS Bridge
+	- Fixed floating switches issue on Viz app. 
+	- Added units on the plots.
+	- Viz allow user to go to nodes by clicking on plots.
+	- Labels added for overlapping line on Viz plots.
+	- Operator login issue resolved.
+	- First integration test added in gridappsd-testing repo.
+	
+2. Source Code
+
+	- goss-gridapps-d - https://github.com/GRIDAPPSD/GOSS-GridAPPS-D/tree/releases/2020.02.0
+	- gridappsd-viz - https://github.com/GRIDAPPSD/gridappsd-viz/tree/releases/2020.02.0
+	- gridappsd-python - https://github.com/GRIDAPPSD/gridappsd-python/tree/releases/2020.02.0
+	- cim2glm - https://github.com/GRIDAPPSD/Powergrid-Models/tree/releases/2020.02.0
+	- proven-cluster - https://github.com/pnnl/proven-cluster/releases/tag/v1.3.5.7
+	- proven-client - https://github.com/pnnl/proven-client/releases/tag/v1.3.6
+	- proven-message - https://github.com/pnnl/proven-message/releases/tag/v1.3.5.4
+	- proven-docker - https://github.com/GRIDAPPSD/proven-docker/tree/releases/2020.02.0
+	- fncs - https://github.com/GRIDAPPSD/fncs/tree/develop
+	- gridappsd-docker-build - https://github.com/GRIDAPPSD/gridappsd-docker-build/tree/releases/2020.02.0
+	- gridlab-d - https://github.com/GRIDAPPSD/gridlab-d/tree/develop
+	- sample-app - https://github.com/GRIDAPPSD/gridappsd-sample-app/tree/releases/2020.02.0
+
+

@@ -35,8 +35,8 @@ sys.path.insert(0, os.path.abspath('../../applications'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	'sphinx.ext.autodoc',
-	'javasphinx',
+    'sphinx.ext.autodoc',
+    'javasphinx',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
@@ -240,10 +240,9 @@ epub_copyright = copyright
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
 
-
-
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
+
 
 # Custom event handlers for Volttron #
 def setup(app):
@@ -253,8 +252,36 @@ def setup(app):
     by readthedocs
     :param app:
     """
-    app.connect('builder-inited', generate_apidoc)
+    # app.connect('builder-inited', generate_apidoc)
+    app.connect('builder-inited', build_gridappsd_python_api)
 #    app.connect('build-finished', clean_apirst)
+
+
+def build_gridappsd_python_api(app):
+    repo_path = os.path.abspath('./griappsd-python')
+    from git import Repo
+    import subprocess
+    url = "https://github.com/gridappsd/gridappsd-python"
+    was_created = False
+    if os.path.exists(repo_path):
+        repo = Repo(repo_path)
+    else:
+        repo = Repo.clone_from(url, repo_path)
+        was_created = True
+
+    if not was_created:
+        origin = repo.remote('origin')
+        origin.fetch()
+        origin.pull()
+
+    exclusions = [
+        os.path.join(repo_path, '/setup.py')
+    ]
+
+    cmd = ["sphinx-apidoc", '-M', '-d 4', '-o', 'build/gridappsd-python-api', '--force', repo_path]
+
+    cmd.extend(exclusions)
+    subprocess.check_call(cmd)
 
 
 def generate_apidoc(app):
