@@ -1,7 +1,8 @@
 The Test Manager is responsible for testing an application or service against different events or scenarios.
 The Test Manager Configuration is sent as part of the RequestSimulation. The expected results and events are sent to the Test Manager for processing.
 
-1. Test Configuration
+Test Configuration
+^^^^^^^^^^^^^^^^^^  
 
 The test configuration contains:
 
@@ -36,7 +37,8 @@ The test configuration contains:
     }
 
 
-1. Expected results series
+Expected Results Series
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The expected results is a dictonary of input and output dictionaries that contains measurements at each time key.
 
@@ -143,7 +145,8 @@ The expected results is a dictonary of input and output dictionaries that contai
     }
 ..
 
-3. The test types and sequnece diagrams
+Test Types and Sequnece Diagrams
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The sequenece diagrams are included to aid with understanding how the test manager is handling each test case. 
 
@@ -170,15 +173,15 @@ The expected versus timeseries case breaks the expected data and timeseries data
     :alt: expected_vs_timeseries
     :figclass: align-left    
 
-The timeseries versus timeseries case case breaks both timeseries data queries into chunks and then compares the with output and input expected data created from querying the timeseries database.
+The timeseries versus timeseries case breaks both timeseries data queries into chunks and then compares the with output and input expected data of each instance against the other instance. 
 
 .. figure:: timeseries_vs_timeseries.png
     :align: left
     :alt: .. figure:: timeseries_vs_timeseries.png
     :figclass: align-left    
 
-1. Running a Test
-
+Running a Test
+^^^^^^^^^^^^^^
 
 To run a test agains a running simulation then create a Simulation Config and add a Test Config with a the TestType as "simulation_vs_expected" or "simulation_vs_timeseries".
 
@@ -200,7 +203,8 @@ To run a test without test manager with TestType as "expected_vs_timeseries" or 
     }
 ..
 
-4. Test Results
+Test Results
+^^^^^^^^^^^^
 
    The results of a test will be streamed to /topic/goss.gridappsd.simulation.test.output.<TestID> and will list the values that do not match at each time index.
 
