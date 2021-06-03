@@ -3,143 +3,239 @@ The Test Manager Configuration is sent as part of the RequestSimulation. The exp
 
 1. Test Configuration
 
-The test configuration contains the application ID, rules settings, expected results, and events.
-Other information need by the Test Manager like the simulation ID is obtained by the Simulation Context.
+The test configuration contains:
 
-Example:
-
-::
-
-  {
-    "appId":String
-    "rules":{}
-    "expectedResults":{
-    },
-    "events":{
-    }
-  }
+#. The application ID which is the name of the application. 
+#. The testId with will be generated if one is not provided.
+#. The test type with is one of the following "simulation_vs_expected", "simulation_vs_timeseries", "expected_vs_timeseries", or "timeseries_vs_timeseries"
+#. The compareWithSimId which is the simulation ID to compare against in the timeseries DB.
+#. The compareWithSimIdTwo which is the second simulation ID to compare against in the timeseries DB.
+#. The rules settings.
+#. The expected results which is a json dictionary of times with expected results for inputs and outputs.
+#. The events which contain commands or faults that are scheduled when a simulation runs.
 
 
-2. Expected results series:
+.. figure:: TestConfigClassDiagram.png
+    :align: left
+    :alt: TestConfigClassDiagram
+    :figclass: align-left
 
-Time series json structure with expected results.
 
 .. code-block:: JSON
-   :caption: Expected results
+    :caption: Test Config Example
 
     {
-    "output": {
-        "1248130802": {
-        "simulation_id": "559402036",
-        "message": {
-            "timestamp": 1535574871,
-            "measurements": [
-            {
-                "angle": -122.66883087158203,
-                "magnitude": 2438.561767578125,
-                "measurement_mrid": "_84541f26-084d-4ea7-a254-ea43678d51f9"
-            },
-            {
-                "angle": 21.723935891052907,
-                "magnitude": 45368.78524042436,
-                "measurement_mrid": "_c48d8d88-12be-4b15-8b44-eedc752250c6"
-            },
-            {
-                "measurement_mrid": "_4a316ed2-4e5f-4b8c-9b25-605f5c9e249c",
-                "value": 0
-            }
-            ]
-        }
-        },
-        "1248130805": {
-        "simulation_id": "559402036",
-        "message": {
-            "timestamp": 1535574872,
-            "measurements": [
-            {
-                "angle": -38.381605233862224,
-                "magnitude": 52769.16136465681,
-                "measurement_mrid": "_84541f26-084d-4ea7-a254-ea43678d51f9"
-            },
-            {
-                "angle": 21.723935891052907,
-                "magnitude": 45368.78524042436,
-                "measurement_mrid": "_c48d8d88-12be-4b15-8b44-eedc752250c6"
-            },
-            {
-                "measurement_mrid": "_4a316ed2-4e5f-4b8c-9b25-605f5c9e249c",
-                "value": 1
-            }
-            ]
-        }
-        }
+        "appId": "sample_app",
+        "testId": "382642088",
+        "compareWithSimId": "431673998",
+        "start_time": 1248156000,
+        "duration": 60,
+        "interval": 10,
+        "expectedResults": {},
+        "testType": "expected_vs_timeseries"
     }
 
 
+1. Expected results series
+
+The expected results is a dictonary of input and output dictionaries that contains measurements at each time key.
+
+.. code-block:: JSON
+   :caption: Expected results example
+
+    "expectedResults": {
+        "output": {
+        "1248156002": {
+            "simulation_id": "559402036",
+            "message": {
+                "timestamp": 1535574871,
+                "measurements": [
+                {
+                    "measurement_mrid": "_000b01a1-8238-4372-95c0-82aad26ea311",
+                    "angle": -5.066423674487563,
+                    "magnitude": 2388.676720682955,
+                    "simulation_id": "1961648576",
+                    "time": 1248156002},
+                    {
+                    "measurement_mrid": "_00347396-b4b0-4218-9aba-b363f2cda841",
+                    "angle": 118.66041090126667,
+                    "magnitude": 2425.0820667756834,
+                    "simulation_id": "1961648576",
+                    "time": 1248156002},
+                    {
+                    "measurement_mrid": "_0044ae64-1c72-4e81-b412-d7349ce267d3",
+                    "angle": -39.42744945710241,
+                    "magnitude": 374545.4981119089,
+                    "simulation_id": "1961648576",
+                    "time": 1248156002}
+                ]
+            }
+            }
+        },
+        "input": {
+        "1248156014": {
+            "simulation_id": "559402036",
+            "message": {
+            "timestamp": 1248156014,
+            "measurements": [
+                {"hasMeasurementDifference": "FORWARD",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156014,
+                "attribute": "ShuntCompensator.sections",
+                "value": 1.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"},
+                {"hasMeasurementDifference": "REVERSE",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156014,
+                "attribute": "ShuntCompensator.sections",
+                "value": 0.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"}
+            ]
+            }
+        },
+        "1248156029": {
+            "simulation_id": "559402036",
+            "message": {
+            "timestamp": 1248156029,
+            "measurements": [
+                {"hasMeasurementDifference": "FORWARD",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156029,
+                "attribute": "ShuntCompensator.sections",
+                "value": 0.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"},
+                {"hasMeasurementDifference": "REVERSE",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156029,
+                "attribute": "ShuntCompensator.sections",
+                "value": 1.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"}
+            ]
+            }
+        },
+        "1248156044": {
+            "simulation_id": "559402036",
+            "message": {
+            "timestamp": 1248156044,
+            "measurements": [
+                {"hasMeasurementDifference": "FORWARD",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156044,
+                "attribute": "ShuntCompensator.sections",
+                "value": 0.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"},
+                {"hasMeasurementDifference": "REVERSE",
+                "difference_mrid": "1fae379c-d0e2-4c80-8f2c-c5d7a70ff4d4",
+                "simulation_id": "1961648576",
+                "time": 1248156044,
+                "attribute": "ShuntCompensator.sections",
+                "value": 1.0,
+                "object": "_939CA567-AA3D-4972-AABC-1D0AAF4859FE"}
+            ]
+            }
+        }
+        }
+    }
+..
+
+3. The test types and sequnece diagrams
+
+The sequenece diagrams are included to aid with understanding how the test manager is handling each test case. 
+
+The simulation versus expected case listens for simulation output data and compares with the expected data at the simulation time. 
+It also listens for simulation input data and compares with the expected data at the simulation time. 
+
+.. figure:: simulation_vs_expected.png
+    :align: left
+    :alt: simulation_vs_expected
+    :figclass: align-left
+
+The simulation versus timeseries case listens for simulation output data and compares with the expected data at created from querying the timeseries database at the simulation time.
+It also listens for simulation input data and compares with the expected data created from querying the timeseries database at the simulation time. 
+
+.. figure:: simulation_vs_timeseries.png
+    :align: left
+    :alt: simulation_vs_timeseries
+    :figclass: align-left
+
+The expected versus timeseries case breaks the expected data and timeseries data query into chunks and then compares the expected data with output and input expected data created from querying the timeseries database.
+
+.. figure:: expected_vs_timeseries.png
+    :align: left
+    :alt: expected_vs_timeseries
+    :figclass: align-left    
+
+The timeseries versus timeseries case case breaks both timeseries data queries into chunks and then compares the with output and input expected data created from querying the timeseries database.
+
+.. figure:: timeseries_vs_timeseries.png
+    :align: left
+    :alt: .. figure:: timeseries_vs_timeseries.png
+    :figclass: align-left    
+
+1. Running a Test
 
 
-3. Rules
+To run a test agains a running simulation then create a Simulation Config and add a Test Config with a the TestType as "simulation_vs_expected" or "simulation_vs_timeseries".
 
-The rules application is started by the test manager and messages sent to
-simulation.input.[simulationId] and simulation.output.[simulationId] will be
-forwarded to http://localhost:5000/input/events
+To run a test without test manager with TestType as "expected_vs_timeseries" or "timeseries_vs_timeseries" and send to "goss.gridappsd.simulation.test.input."
 
-Snippet to listen for changes to ShuntCompensators, i.e. CIM capacitors.
+.. code-block:: JSON
+    :caption: Test Config Example
 
-.. code-block:: python
+    {
+        "appId": "sample_app",
+        "testId": "382642088",
+        "compareWithSimId": "431673998",
+        "compareWithSimIdTwo": "231673900",
+        "start_time": 1248156000,
+        "duration": 60,
+        "interval": 10,
+        "expectedResults": {},
+        "testType": "timeseries_vs_timeseries"
+    }
+..
 
-  shunt_dict = defaultdict(lambda: {'count':0})
-  shunt_threshold = 4
-  
-  # A Reverse and a Forward difference is a state change.
-  @when_all((m.message.reverse_differences.allItems(item.attribute == 'ShuntCompensator.sections')) & (
-  m.message.forward_differences.allItems(item.attribute == 'ShuntCompensator.sections')))
-  def shunt_change(c):
-      # consequent
-      for i,f in enumerate(c.m.message.reverse_differences):
-          c.post({'shunt_object': f['object'],
-                  'action': f['attribute'],
-                  'timestamp': c.m.message.timestamp})
+4. Test Results
 
-  @when_all(+m.shunt_object)
-  def count_shunt_object(c):
-      shunt_dict[c.m.shunt_object]['count']+=1
-      if shunt_dict[c.m.shunt_object]['count'] == shunt_threshold:
-          print ('Shunt change threshold '+str(shunt_threshold)+' exceeded for shunt object ' + c.m.shunt_object)
-          send_log_msg('Shunt change threshold '+str(shunt_threshold)+' exceeded for shunt object ' + c.m.shunt_object)
+   The results of a test will be streamed to /topic/goss.gridappsd.simulation.test.output.<TestID> and will list the values that do not match at each time index.
 
+   The fields om the Test Result are as follows:
 
-5. Request Test message API
+   #. object: String - object MRID 
+   #. diffType:String - FORWARD or REVERSE
+   #. indexOne:Long - Time of expected 
+   #. expected:String - Expected value
+   #. simulationTimestamp:Long - Simulation timestamp
+   #. actual:String - Actual value
+   #. diffMrid:String - Diff MRID
+   #. indexTwo:Long - Time of actual value
+   #. attribute:String - CIM attribute or FORWARD or REVERSE
+   #. match:Boolean - True of the expected and actual match
 
-There is a request_test.py python script provided for the sample app in gridappsd-sample-app/sample_app/tests/request_test.py
-The request_test script will work outside the docker container and submits a request to run a simulation.
-It will wait to capture the returned simulation ID. The simulation ID is set in the
-test configuration message and that message is sent to the "goss.gridappsd.test" topic.
-This will cause put the test manager into test mode. The test manager will now forward simulation
-input and output to the specified port for the rules application.
-
-The test message contains the following:
-
-* testConfigPath - Full path to the test config.
-* testScriptPath - Full path to the test config.
-* rulePort - Port to use for the rules app, the default is 5000.
-* topic - topic to use for the rule app, the default is input.
-* expectedResult - Full path to the expected result test series data.
-
-.. code-block:: python
-
-  loc ='/gridappsd/applications/sample_app/tests'
-  testCfg = {"testConfigPath":loc+"/SampleTestConfig.json",
-          "testScriptPath":loc+"/SampleTestScript.json",
-          "simulationID": 1234,
-          "rulePort": 5000,
-          "topic":"input",
-          "expectedResult":loc + "/expected_result_series_filtered_8500.json"
-          }
+.. figure:: TestResultClassDiagram.png
+   :alt: TestResultClassDiagram
+..
 
 
-The script works from outside of the docker container from either an IDE like PyCharm or from the command line.
 
-.. code-block:: bash
+.. code-block:: 
+    :caption: Test Result Example
 
-  user@usermachine>python sample_app/tests/request_test.py
+    [
+    {'status': 'start'}
+    {'object': '_0044ae64-1c72-4e81-b412-d7349ce267d3', 'attribute': 'magnitude', 'indexOne': 1248156002, 'indexTwo': 1248156002, 'simulationTimestamp': 0, 'expected': '374545.4981119089', 'actual': '54911.42414314939', 'diffMrid': 'NA', 'diffType': 'NA', 'match': False}
+    {'object': '_000b01a1-8238-4372-95c0-82aad26ea311', 'attribute': 'angle', 'indexOne': 1248156002, 'indexTwo': 1248156002, 'simulationTimestamp': 0, 'expected': '-5.066423674487563', 'actual': '21.91525592241816', 'diffMrid': 'NA', 'diffType': 'NA', 'match': False}
+    {'object': '_000b01a1-8238-4372-95c0-82aad26ea311', 'attribute': 'magnitude', 'indexOne': 1248156002, 'indexTwo': 1248156002, 'simulationTimestamp': 0, 'expected': '2388.676720682955', 'actual': '23182.721945577698', 'diffMrid': 'NA', 'diffType': 'NA', 'match': False}
+    {'object': '_939CA567-AA3D-4972-AABC-1D0AAF4859FE', 'attribute': 'FORWARD value', 'indexOne': 1248156014, 'indexTwo': 1248156014, 'simulationTimestamp': 0, 'expected': '1.0', 'actual': '0', 'diffMrid': '661ff0c3-43ed-4351-905b-43874c9003a4', 'diffType': 'FORWARD', 'match': False}
+    {'object': '_939CA567-AA3D-4972-AABC-1D0AAF4859FE', 'attribute': 'REVERSE value', 'indexOne': 1248156014, 'indexTwo': 1248156014, 'simulationTimestamp': 0, 'expected': '0.0', 'actual': '1', 'diffMrid': '661ff0c3-43ed-4351-905b-43874c9003a4', 'diffType': 'REVERSE', 'match': False}
+    {'object': '_939CA567-AA3D-4972-AABC-1D0AAF4859FE', 'attribute': 'FORWARD value', 'indexOne': 1248156029, 'indexTwo': 1248156029, 'simulationTimestamp': 0, 'expected': '0.0', 'actual': '1', 'diffMrid': '97ad4c0d-8e04-42a0-a244-c38f33724974', 'diffType': 'FORWARD', 'match': False}
+    {'object': '_939CA567-AA3D-4972-AABC-1D0AAF4859FE', 'attribute': 'REVERSE value', 'indexOne': 1248156029, 'indexTwo': 1248156029, 'simulationTimestamp': 0, 'expected': '1.0', 'actual': '0', 'diffMrid': '97ad4c0d-8e04-42a0-a244-c38f33724974', 'diffType': 'REVERSE', 'match': False}
+    {'status': 'finish'}
+    ]
+..
+
