@@ -17,7 +17,30 @@ Now we are inside the executing container. Start the platform.
 
 ..
 
-Open your browser to http://localhost:8080/ and click the menu button.
+Visualization Tool
+------------------
+
+Go to http://localhost:8080/ in your browswer and login.
+
+Click the settings(three vertical dots) on top right to select the visualization theme, 
+enable/diasable logging and choose timezone.
+
+.. figure:: settings_menu.png
+    :align: left
+    :alt: menu-image
+    :figclass: align-left
+    :figwidth: 100%
+
+
+.. figure:: select_setting.png
+    :align: left
+    :alt: menu-select-image
+    :figclass: align-left
+    :scale: 50%
+    :figwidth: 100%
+
+
+Click the menu button on the top left for the Visualization Menu.
 
 .. figure:: home.png
     :align: left
