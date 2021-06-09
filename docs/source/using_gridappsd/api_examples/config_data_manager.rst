@@ -382,3 +382,55 @@ Response:
 		   "DateTime, .......
 		]
 	}
+
+
+Request Vnom Export Configuration file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generates file containing vnom configuration for the given model or simulation.
+
+Request: goss.gridappsd.process.request.config
+
+::
+
+  {
+    "configurationType":"Vnom Export",
+    "parameters":{"simulation_id":"12345"}
+    }
+	
+If requested for a simulation then simulation id is mandatory.
+Otherwise use model_id as mentioned next.	
+
+::
+
+    {
+    "configurationType": "Vnom Export",
+    "parameters": {
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
+		}
+	}
+
+Additional paramters can be provided with model_id as mentioned in next request. 
+  
+::
+
+    {
+    "configurationType": "Vnom Export",
+    "parameters": {
+      "i_fraction": "1.0",
+      "z_fraction": "0.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "load_scaling_factor": "1.0",
+      "schedule_name": "ieeezipload",
+      "p_fraction": "0.0"
+    }
+  }
+
+Response:
+::
+  {
+    "vnom": [
+        "Bus, BasekV, Node1, Magnitude1, Angle1, pu1, Node2, Magnitude2, Angle2, pu2, Node3, Magnitude3, Angle3, pu3",
+        "\"150\", 4.16, 1,    2401.78,    0.0,         1, 2,    2401.78, -120.0,         1, 3,    2401.78,  120.0,         1",
+        "\"97\", 4.16, 1,    2401.82,    0.0,         1, 2,    2401.81, -120.0,         1, 3,    2401.82,  120.0,         1",
+        "\"197\", 4.16, 1,    2401.82,    0.0,         1, 2,    2401.81, -120.0,         1, 3,    2401.82,  120.0,         1",
+	....
