@@ -95,7 +95,7 @@ Fault Commands sent from the Test Manager to the simulation
                 "rLineToLine": 0.0, 
                 "xGround": 0.001
                 }, 
-                "FaultMRID": "1233", 
+                "faultMRID": "1233", 
                 "PhaseCode": "AN", 
                 "PhaseConnectedFaultKind": "lineToGround"
             }
@@ -120,7 +120,7 @@ Fault Commands sent from the Test Manager to the simulation
                 "rLineToLine": 0.0, 
                 "xGround": 0.001
                 }, 
-                "FaultMRID": "1233", 
+                "faultMRID": "1233", 
                 "PhaseCode": "AN", 
                 "PhaseConnectedFaultKind": "lineToGround"
             }
