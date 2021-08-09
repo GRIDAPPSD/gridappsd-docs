@@ -15,7 +15,7 @@ For example of an application working with GridAPPS-D, please see: https://githu
 Following is the recommended structure for applications working with GridAPPS-D using gridappsd-sample-app as an example:
 
 ::
-		
+
 	.
 	└── gridappsd-sample_app
 	    ├── sample-app
@@ -254,11 +254,11 @@ Example config for service:
 2. Clone the repository https://github.com/GRIDAPPSD/gridappsd-docker (refered to as gridappsd-docker repository) next to this repository (they should both have the same parent folder)
 
 ::
-	
+
 	.
 	├── gridappsd-docker
 	└── gridappsd-sample-app
-	
+
 
 3. Add service or service to platform
 
@@ -269,7 +269,7 @@ Adding these lines will mount the service/service on the container's filesystem 
 For service:
 
 ::
-	
+
 	#    volumes:
 	#      - ~/git/gridappsd-sample-app/sample_app:/gridappsd/services/sample_app
 	#      - ~/git/gridappsd-sample-app/sample_app/sample_app.config:/gridappsd/services/sample_app.config
@@ -281,7 +281,7 @@ For service:
 For service:
 
 ::
-	
+
 	#    volumes:
 	#      - ~/git/gridappsd-sample-app/sample_app:/gridappsd/services/sample_app
 	#      - ~/git/gridappsd-sample-app/sample_app/sample_app.config:/gridappsd/services/sample_app.config
