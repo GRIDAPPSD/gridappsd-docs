@@ -721,14 +721,8 @@ phase C will also exist at wdgHi, but this transformer doesn’t require
 it. We still assign vectorGroup Yd1 to the supervising PowerTransformer,
 as this is the typical case. The modeler should determine that. By
 comparison to Figure 27, there is a possible ambiguity in how endA3
-represents the polarity dot at the neutral end of Wdg A3. An earlier CIM
-proposal would have assigned phaseAngleClock = 6 on wdgA3, but the
-attribute was removed from TransformerTankEnd. It may not be possible to
-infer the correct winding polarities from the vectorGroup in all cases.
-There is a phaseAngleClock attribute on TransformerTankEndInfo, but that
-represents a shelf state of the tank, not necessarily connections in the
-field. Therefore, it may be necessary to propose the phaseAngleClock
-attribute for TransformerTankEnd.
+represents the polarity dot at the neutral end of Wdg A3. This is the
+purpose of TransformerTankEnd.reversed, which should be True for wdgA3.
 
 |imgcim19|
 
@@ -953,12 +947,9 @@ Possible CIM enhancements:
 
 4. Dielectric constant and soil resistivity (Figure 10)
 
-5. Clock angles for TransformerTankEnd (i.e. move phaseAngleClock from
-   PowerTransformerEnd to TransformerEnd (Figure 6)
+5. Add the Fault.stopDateTime attribute
 
-6. Add the Fault.stopDateTime attribute
-
-7. Single-phase asynchronous and synchronous machines.
+6. Single-phase asynchronous and synchronous machines.
 
 CIM Profile in CIMTool
 ~~~~~~~~~~~~~~~~~~~~~~
