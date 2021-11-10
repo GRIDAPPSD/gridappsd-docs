@@ -60,6 +60,8 @@ Simulation API
 Timeseries API
 --------------
 
+.. include:: Query_Timeseries.rst
+
 .. include:: api_examples/timeseries_data_api.rst
 
 Services

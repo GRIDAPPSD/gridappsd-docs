@@ -83,7 +83,8 @@ Request:  goss.gridappsd.process.request.config
   
 Response:
 ::
-{"feeders":[
+
+  {"feeders":[
   {"name":"ieee123",
     "mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507",
     "substation":"IEEE123",
@@ -157,8 +158,8 @@ Response:
 ::
 
   {"feeders":[
-{"name":"test9500new","mRID":"_AAE94E4A-2465-6F5E-37B1-3E72183A4E44","substationName":"ThreeSubs","substationID":"_40485321-9B2C-1B8C-EC33-39D2F7948163","subregionName":"Large","subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
-{"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"IEEE123","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"Medium","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
+  {"name":"test9500new","mRID":"_AAE94E4A-2465-6F5E-37B1-3E72183A4E44","substationName":"ThreeSubs","substationID":"_40485321-9B2C-1B8C-EC33-39D2F7948163","subregionName":"Large","subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
+  {"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"IEEE123","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"Medium","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
   .......
   ]}
 
@@ -272,7 +273,7 @@ Response:
   .......
 
 Request OpenDSS Coordinates File
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the symbols file with XY coordinates used by the OpenDSS simulator
 
 - Required: configurationType, parameters[model_id]
@@ -291,27 +292,27 @@ Request:  goss.gridappsd.process.request.config
 Response:
 ::
 
-88,2950.0,1300.0
-89,2775.0,1125.0
-197,3525.0,2200.0
-110,4275.0,3050.0
-111,4275.0,3625.0
-112,4275.0,2925.0
-113,4800.0,2925.0
-114,5125.0,2925.0
-90,2775.0,900.0
-61s,3175.0,1300.0
-91,2550.0,1125.0
-92,2550.0,825.0
-93,2325.0,1125.0
-94,2325.0,850.0
-95,2025.0,1125.0
-96,2025.0,925.0
-97,3525.0,2100.0
-98,3800.0,2100.0
-10,1450.0,2150.0
-99,4350.0,2100.0
-11,950.0,2150.0
+  88,2950.0,1300.0
+  89,2775.0,1125.0
+  197,3525.0,2200.0
+  110,4275.0,3050.0
+  111,4275.0,3625.0
+  112,4275.0,2925.0
+  113,4800.0,2925.0
+  114,5125.0,2925.0
+  90,2775.0,900.0
+  61s,3175.0,1300.0
+  91,2550.0,1125.0
+  92,2550.0,825.0
+  93,2325.0,1125.0
+  94,2325.0,850.0
+  95,2025.0,1125.0
+  96,2025.0,925.0
+  97,3525.0,2100.0
+  98,3800.0,2100.0
+  10,1450.0,2150.0
+  99,4350.0,2100.0
+  11,950.0,2150.0
   .......
 
 

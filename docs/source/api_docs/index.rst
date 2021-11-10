@@ -28,6 +28,6 @@ GridLAB-D
 
 GridLAB-D is the distribution grid simulator within the platform; its overall design is described in [CIT8]_.
 
-.. include:: gridlabd-cim.rst
+gridlabd-cim.rst is not included, until we have a replacement for Javasphinx
 
 
