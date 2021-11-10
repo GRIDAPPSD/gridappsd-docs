@@ -254,7 +254,7 @@ def setup(app):
 
 
 def build_gridappsd_python_api(app):
-    repo_path = os.path.abspath('./griappsd-python')
+    repo_path = os.path.abspath('./gridappsd-python')
     from git import Repo
     import subprocess
     url = "https://github.com/gridappsd/gridappsd-python"
