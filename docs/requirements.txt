@@ -3,3 +3,4 @@ sphinx-autobuild
 sphinx-rtd-theme
 recommonmark
 gitpython
+docutils==0.17.1
