@@ -191,13 +191,58 @@ Example Message:
             	]
         	}
     	}
-	}
+  }
 
+Pause Simulation
+^^^^^^^^^^^^^^^^
 
+Topic:
 
-	
+::
 
+        /topic/goss.gridappsd.simulation.input.[simulation_id]
 
+Example Message:
 
+::
 
+  {
+      "command": "pause"
+  }
 
+Resume Simulation
+^^^^^^^^^^^^^^^^^
+
+Topic:
+
+::
+
+        /topic/goss.gridappsd.simulation.input.[simulation_id]
+
+Example Message:
+
+::
+
+  {
+      "command": "resume"
+  }
+
+Resume and Pause the Simulation after a Specified Number of Seconds
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Topic:
+
+::
+
+        /topic/goss.gridappsd.simulation.input.[simulation_id]
+
+Example Message:
+
+::
+
+  {
+      "command": "resumePauseAt",
+      "input": {
+          "pauseIn": 10
+      }
+  }

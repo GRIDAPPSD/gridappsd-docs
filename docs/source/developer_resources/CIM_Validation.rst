@@ -16,7 +16,7 @@ applications.
 
 To represent the model, CIM is written using the Unified Modeling 
 Language (UML) using Sparx Enterprise Architect. The model is stored 
-in a project file (*.eap extension file).  GridAPPS-D extends the CIM 
+in a project file (\*.eap extension file).  GridAPPS-D extends the CIM 
 to meet its application specific needs. UML (Object Management Group 
 UML 2.5 Specification) profiles are secondary models, derived from 
 the primary information model.  Profiles represent a portion of the 
@@ -77,7 +77,7 @@ report for CIM100 can be compared against the GridAPPS-D CIMv100.
 
 
 Well-Formed and Valid Profile 
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 CIMTool can not only create Resource Description Framework Schema (RDFS) 
 profiles from the CIM100 UML, it can also validate the generated profiles 
 or created RDF datasets against CIM100 schema.  GridAPPS-D has plans to 

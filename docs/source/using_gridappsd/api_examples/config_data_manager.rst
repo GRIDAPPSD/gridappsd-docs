@@ -83,7 +83,8 @@ Request:  goss.gridappsd.process.request.config
   
 Response:
 ::
-{"feeders":[
+
+  {"feeders":[
   {"name":"ieee123",
     "mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507",
     "substation":"IEEE123",
@@ -157,8 +158,8 @@ Response:
 ::
 
   {"feeders":[
-{"name":"test9500new","mRID":"_AAE94E4A-2465-6F5E-37B1-3E72183A4E44","substationName":"ThreeSubs","substationID":"_40485321-9B2C-1B8C-EC33-39D2F7948163","subregionName":"Large","subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
-{"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"IEEE123","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"Medium","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
+  {"name":"test9500new","mRID":"_AAE94E4A-2465-6F5E-37B1-3E72183A4E44","substationName":"ThreeSubs","substationID":"_40485321-9B2C-1B8C-EC33-39D2F7948163","subregionName":"Large","subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
+  {"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"IEEE123","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"Medium","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
   .......
   ]}
 
@@ -272,7 +273,7 @@ Response:
   .......
 
 Request OpenDSS Coordinates File
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the symbols file with XY coordinates used by the OpenDSS simulator
 
 - Required: configurationType, parameters[model_id]
@@ -291,27 +292,27 @@ Request:  goss.gridappsd.process.request.config
 Response:
 ::
 
-88,2950.0,1300.0
-89,2775.0,1125.0
-197,3525.0,2200.0
-110,4275.0,3050.0
-111,4275.0,3625.0
-112,4275.0,2925.0
-113,4800.0,2925.0
-114,5125.0,2925.0
-90,2775.0,900.0
-61s,3175.0,1300.0
-91,2550.0,1125.0
-92,2550.0,825.0
-93,2325.0,1125.0
-94,2325.0,850.0
-95,2025.0,1125.0
-96,2025.0,925.0
-97,3525.0,2100.0
-98,3800.0,2100.0
-10,1450.0,2150.0
-99,4350.0,2100.0
-11,950.0,2150.0
+  88,2950.0,1300.0
+  89,2775.0,1125.0
+  197,3525.0,2200.0
+  110,4275.0,3050.0
+  111,4275.0,3625.0
+  112,4275.0,2925.0
+  113,4800.0,2925.0
+  114,5125.0,2925.0
+  90,2775.0,900.0
+  61s,3175.0,1300.0
+  91,2550.0,1125.0
+  92,2550.0,825.0
+  93,2325.0,1125.0
+  94,2325.0,850.0
+  95,2025.0,1125.0
+  96,2025.0,925.0
+  97,3525.0,2100.0
+  98,3800.0,2100.0
+  10,1450.0,2150.0
+  99,4350.0,2100.0
+  11,950.0,2150.0
   .......
 
 
@@ -319,23 +320,50 @@ Response:
 
 Request YBus Export Configuration file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Generates file containing ybus configuration for the selected simulation.  Simulation must be running.
-
-- Required: configurationType, parameters[simulation_id]
+Generates file containing ybus configuration for the given model or simulation.
 
 Request: goss.gridappsd.process.request.config
+
 ::
 
   {
     "configurationType":"YBus Export",
     "parameters":{"simulation_id":"12345"}
     }
+	
+If requested for a simulation then simulation id is mandatory.
+Otherwise use model_id as mentioned next.	
+
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
+		}
+	}
+
+Additional paramters can be provided with model_id as mentioned in next request. 
+  
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "i_fraction": "1.0",
+      "z_fraction": "0.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "load_scaling_factor": "1.0",
+      "schedule_name": "ieeezipload",
+      "p_fraction": "0.0"
+    }
+  }
 
 Response:
 ::
 
   {
-        "yParseFilePath": [
+        "yParse": [
             "Row,Col,G,B",
             "1,1,517.6253721,-539.2591296",
             "2,1,-3.438703156,9.070554234",
@@ -345,4 +373,13 @@ Response:
             "85,1,1.801223903,-4.751238599",
             "86,1,3.057563114,-5.798887966"
 	    ..........
-
+		],
+		"nodeList": [
+		  "\"97.1\"",
+		  "\"97.2\"",
+		..........
+		],
+		"summary": [
+		   "DateTime, .......
+		]
+	}

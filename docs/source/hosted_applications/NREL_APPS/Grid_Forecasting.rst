@@ -11,7 +11,7 @@ Design
 
 This application develops a high-resolution, short-term load forecasting method to accurately predict the power consumption of individual customers in distribution systems. Using historical load measurements as inputs, it trains a support vector regression model to forecast the future load. Based on the forecasted load in the short-term future, this application develops a three-phase AC optimal power flow problem to determine the predictive DLMPs in distribution systems. By accurately modeling the losses and the imbalances of distribution networks, it provides time- and location-specific pricing of individual resources.
 
-|nrel_OPF_image0|
+|nrel_OPF_image2|
 
 Operating/Running
 ~~~~~~~~~~~~~~~~~
@@ -25,4 +25,4 @@ References
 [2]	R. Yang and Y. Zhang, “Three-Phase AC Optimal Power Flow Based Distribution Locational Marginal Price,” IEEE Innovative Smart Grid Technologies, Arlington, VA, Apr. 2017.
 
 
-.. |nrel_OPF_image0| image:: NREL_APPS/media/Grid_Forecasting.png
+.. |nrel_OPF_image2| image:: NREL_APPS/media/Grid_Forecasting.png
