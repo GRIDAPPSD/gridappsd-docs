@@ -340,7 +340,7 @@ nameplate and rating information in the network model.  Preliminary values
 for these attributes would be available from an application to 
 interconnect DER, and then updated as the project moves through 
 commissioning to operational status.  :red:`To be determined whether 
-DERDyanmics can have cardinality 0..* as shown, or 0..1 like other dynamic 
+DERDynamics can have cardinality 0..* as shown, or 0..1 like other dynamic 
 functions in 302.` 
 
 |imgcim302vq|
@@ -368,8 +368,11 @@ which would be a Terminal associated to the PowerElectronicsConnection,
 SynchronousMachine, or AsynchronousMachine shown at the top of Figure 15. Where this
 is not the case, e.g., the DER responds to voltage and frequency on the other
 side of a PowerTransformer, the RemoteInputSignal mechanism can be used as shown
-in this figure. For a three-phase DER, note that three individual phase voltages and
-one frequency signal would be needed.
+in this figure. In GridAPPS-D, only the voltage signal is relevant. IEEE Std. 1547-2018
+states that voltage functions are based on the average, minimum, or maximum of all applicable
+voltages. The applicable voltages depend on how the connection appears to the grid,
+as conveyed in the attributes of DERIEEEType1. Hence, the RemoteInputSignal.phase
+attribute is not used. Instead, use all applicable voltages from the associated Terminal.
 
 Extensions for Houses and Faults
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
