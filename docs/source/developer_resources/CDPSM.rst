@@ -207,35 +207,20 @@ AssetInfo mechanism, described with Figure 8.  The RegulationControl.mode
 must be voltage.  (Note: RegulationSchedule, RatioTapChangerTable and 
 PhaseTapChanger are not used.) 
 
-|imgcim7|
-
-Figure 8: Many distribution software packages use the concept of catalog 
-data, aka library data, especially for lines and transformers.  We use the 
-AssetInfo package to implement this in CIM.  Here, the TapChangerInfo 
-class includes the CT rating, CT ratio and PT ratio parameters needed for 
-line drop compensator settings in voltage regulators.  Catalog data is a 
-one-to-many relationship.  In this case, many TapChangers can share the 
-same TapChangerInfo data, which saves space and provides consistency.  
-Older versions of CIM had many-to-many catalog relationships, but now only 
-one AssetDataSheet may be associated per Equipment.  (Note: many datasheet 
-attributes are not shown here and not yet used in GridAPPS-D).  
-
 |imgcim8|
 
-Figure 9: The catalog mechanism for transformers will associate a 
-TransformerTank (Figure 6) with TransformerTankInfo (here), via the 
-AssetDataSheet mechanism described in Figure 8.  The PowerTransformerInfo 
-collects TransformerTankInfo by reverse association, but it does not link 
-with PowerTransformer.  In other words, the physical tanks are cataloged 
-because transformer testing is done on tanks.  One possible use for 
-PowerTransformerInfo is to help organize the catalog.  It’s important 
-that TransformerEndInfo:endNumber (here) properly match the 
-TransformerEnd:endNumber (Figure 6).  The shunt admittances are defined by 
-NoLoadTest on a winding / end, usually just one such test.  The impedances 
-are defined by a set of ShortCircuitTests; one winding / end will be 
-energized, and one or more of the others will be grounded in these tests.  
-(OpenCircuitTest is not used, nor are the current, power and voltage 
-attributes of ShortCircuitTest).  
+Figure 9: Many distribution software packages use the concept of catalog 
+data, aka library data, especially for lines and transformers.  The 
+catalog mechanism for transformers will associate a TransformerTank 
+(Figure 6) with TransformerTankInfo (here).  Many TransformerTanks can 
+share the same TransformerTankInfo data, which saves space and provides 
+consistency.It’s important that TransformerEndInfo:endNumber (here) 
+properly match the TransformerEnd:endNumber (Figure 6).  The shunt 
+admittances are defined by NoLoadTest on a winding / end, usually just one 
+such test.  The impedances are defined by a set of ShortCircuitTests; one 
+winding / end will be energized, and one or more of the others will be 
+grounded in these tests.  (OpenCircuitTest is not used, nor are the 
+current, power and voltage attributes of ShortCircuitTest).  
 
 |imgcim9|
 
@@ -1130,7 +1115,6 @@ required for MySQL. The following manual edits were made:
 .. |imgcim4| image:: CDPSM/media/cim_CapacitorClass.png
 .. |imgcim5| image:: CDPSM/media/cim_Transformer.png
 .. |imgcim6| image:: CDPSM/media/cim_TapChangerClass.png
-.. |imgcim7| image:: CDPSM/media/cim_AssetInfoOverview.png
 .. |imgcim8| image:: CDPSM/media/cim_DCIMTransformerInfo.png
 .. |imgcim9| image:: CDPSM/media/cim_DCIMWireInfo.png
 .. |imgcim10| image:: CDPSM/media/cim_StateVariables.png
