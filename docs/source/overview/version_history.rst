@@ -653,7 +653,7 @@ Version 2020.04.0
 	- Corrected json parse method for TimeSeriesRequest class.
 	- Viz app: Updated to use simulation timestamp for voltage violation instead of current time.	
 	- Viz app: Show "Simulation starting" message before simulation is started and hide the Pause/Stop buttons.
-	- Powergrid model: Added scripts and *uuid.dat files to maintain persistent mRID values
+	- Powergrid model: Added scripts and \*uuid.dat files to maintain persistent mRID values
 	- Powergrid model: Supporting OverheadLineUnbalanced, ganged regulators and unknown spacings for 1-phase and 2-phase line. 
 	- Integration testing infrastructure create with PyTest and Travis. 
 		

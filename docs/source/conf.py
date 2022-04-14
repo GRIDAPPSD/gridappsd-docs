@@ -36,7 +36,6 @@ sys.path.insert(0, os.path.abspath('../../applications'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'javasphinx',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
@@ -52,9 +51,6 @@ templates_path = ['_templates']
 from recommonmark.parser import CommonMarkParser
 
 # The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-#
-# source_suffix = ['.rst', '.md']
 source_suffix = ['.rst', '.md']
 
 source_parsers = {
@@ -66,7 +62,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'GridAPPS-D'
-copyright = '2017-2018, Battelle Memorial Institute All rights reserved.'
+copyright = '2017-2021, Battelle Memorial Institute All rights reserved.'
 author = 'The GridAPPS-D Team and Community'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -258,7 +254,7 @@ def setup(app):
 
 
 def build_gridappsd_python_api(app):
-    repo_path = os.path.abspath('./griappsd-python')
+    repo_path = os.path.abspath('./gridappsd-python')
     from git import Repo
     import subprocess
     url = "https://github.com/gridappsd/gridappsd-python"

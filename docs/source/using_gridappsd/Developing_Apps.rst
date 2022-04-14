@@ -190,7 +190,8 @@ Following is the recommended structure for services working with gridappsd using
 Config file is used by GridAPPS-D platform to register and launch the service. 
 Here is the config file example using gridappsd-state-estimator:
 
-:: 
+::
+ 
 	{
 		"id":"state-estimator",
 		"description":"State Estimator",

@@ -127,8 +127,9 @@ Allowed values for queryFilter are:
 	object [string]
 	value [number]
 
-Please find some sample requests with various query filters
+Please find some sample requests with various query filters:
 ::
+
 	{"queryMeasurement": "simulation",
  	"queryFilter": {"simulation_id": "582881157", "hasSimulationMessageType": "INPUT"},
 	"responseFormat": "JSON"}
@@ -155,8 +156,9 @@ Example Request:
 	"responseFormat": "JSON"}
 	
 Example Response for result format JSON:
-::	
-		{
+::
+
+	{
 			"data": {
 			"measurements": [
 				{
