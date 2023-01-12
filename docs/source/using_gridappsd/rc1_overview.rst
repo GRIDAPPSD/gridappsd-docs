@@ -37,15 +37,24 @@ Choose Simulations from the menu.
 
 
 To run a demo simulation keep the selected and entered values as it is. Otherwise select/enter Powergrid, Simulation and Application configuration values. 
-Click the check mark to save the configuration.
+Click the submit button to save the configuration.
 
-.. figure:: config.png
+.. figure:: config1.png
     :align: left
     :alt: config-image
     :figclass: align-left
 
+.. figure:: config2.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
 
-Click the triangle (1) to start the simulation.  Simulation Status (2) at the bottom of the screen will display the simulation log messages.
+.. figure:: config3.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
+
+Click the triangle to start the simulation. 
 
 .. figure:: start.png
     :align: left
@@ -65,8 +74,8 @@ GridLAB-D [CIT8]_ simulates power system operation and exchanges
 information with the sample-app using GOSS [CIT6]_ and FNCS [CIT7]_.
 
 Following image shows the demo simulation output of the sample-app running on the IEEE 8500-node test system.
+Simulation Status at the bottom of the screen will display the simulation log messages. The simulation can be paused or stopped using the play and stop button.
 
-..
 
 |rc3_overview_image0|
 
@@ -84,6 +93,35 @@ For an orderly shutdown of the platform:
 
   Use Ctrl+C to stop gridappsd from running
 
+Adding Events
+-------------
 
+Communication outage and fault events can be added using the Test Configuration page
 
+Select the CommOutage radio button for adding Communication Outage Events
 
+.. figure:: test_config.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
+
+Select the Fault radio button for adding Fault Events
+
+.. figure:: faults.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
+
+Added events can be viewed in a tabular format on the right side of the page
+
+.. figure:: event_table.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left
+
+The added events for a simulation can be seen in the events view
+
+.. figure:: event_view.png
+    :align: left
+    :alt: config-image
+    :figclass: align-left

@@ -6,6 +6,16 @@ Using GridAPPS-D
 
 .. include:: rc1_overview.rst
 
+Uploading Model into Blazegraph
+-------------------------------
+
+.. include:: Uploading_model_using_blazegraph_workbench.rst
+
+Inserting Measurements into Blazegraph
+--------------------------------------
+
+.. include:: Inserting_measurements_blazegraph.rst
+
 Using Platform API
 ------------------
 
@@ -47,7 +57,22 @@ Simulation API
 
 .. include:: api_examples/simulation_request.rst
 
-Hosting Application or Service
-------------------------------
+Timeseries API
+--------------
+
+.. include:: api_examples/timeseries_data_api.rst
+
+Services
+--------
+
+`Sensor Simulator Service <https://gridappsd-sensor-simulator.readthedocs.io>`_
+The `GridAPPSD's Sensor Simulator` simulates real devices based upon the magnitude of "prestine" simulated values.
+Currently the sensor service supports angle and magnitude measurements.
+
+'_GridAPPS-D DNP3 Service <https://gridappsd-dnp3.readthedocs.io/en/develop/>'__ 
+The `GridAPPS-D DNP3 Service` integrates GridAPPS-D with DNP3 based commercial tools to enable the CIM and DNP3 data exchange of the devices.
+
+Hosting Application
+-------------------
 
 .. include:: Developing_Apps.rst

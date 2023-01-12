@@ -1,6 +1,6 @@
 
 Request all GridLAB-D configuration files
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates all configuration files necessary to run a sumulation using the GridLAB-D simulator.  Returns the diretory where all of the configuration files are stored.
 
 - Required: configurationType, parameters[model_id,directory,simulationname,simulation_start_time,simulation_duration,simulation_id,simulation_broker_host,simulation_broker_port]
@@ -8,19 +8,20 @@ Generates all configuration files necessary to run a sumulation using the GridLA
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D All",
     "parameters": {
       "load_scaling_factor": "1.0",
       "i_fraction": "1.0",
-      "model_id": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
       "p_fraction": "0.0",
       "simulation_id": "12345",
       "z_fraction": "0.0",
       "simulation_broker_host": "localhost",
       "simulation_name": "ieee8500",
       "simulation_duration": "60",
-      "simulation_start_time": "2018-02-18 00:00:00",
+      "simulation_start_time": "1518958800",
       "solver_method": "NR",
       "schedule_name": "ieeezipload",
       "simulation_broker_port": "61616",
@@ -33,7 +34,7 @@ Response:
   
   
 Request GridLAB-D Base File
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the main GLM file required by the GridLAB-D simulator
 
 - Required: configurationType, parameters[model_id]
@@ -41,12 +42,13 @@ Generates the main GLM file required by the GridLAB-D simulator
 
 Request:  goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D Base GLM",
     "parameters": {
       "i_fraction": "1.0",
       "z_fraction": "0.0",
-      "model_id": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
       "load_scaling_factor": "1.0",
       "schedule_name": "ieeezipload",
       "p_fraction": "0.0"
@@ -55,14 +57,15 @@ Request:  goss.gridappsd.process.request.config
   
 Response:
 ::
+
   object regulator_configuration {
-    name "rcon_VREG4";
-    connect_type WYE_WYE;
-    Control MANUAL; // OUTPUT_VOLTAGE;
+  name "rcon_reg1a";
+  connect_type WYE_WYE;
+	Control MANUAL; // LINE_DROP_COMP;
   .......
 
 Request GridLAB-D Symbols File
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates the symbols file with XY coordinates used by the GridLAB-D simulator
 
 - Required: configurationType, parameters[model_id]
@@ -70,26 +73,36 @@ Generates the symbols file with XY coordinates used by the GridLAB-D simulator
 
 Request:  goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType": "GridLAB-D Symbols",
     "parameters": {
-      "model_id": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
     }
   }
   
 Response:
 ::
-  {"feeder":[
-  {"swing_nodes":[
-  {"name":"source","bus":"sourcebus","phases":"ABC",
-    "nominal_voltage":66395.3,"x1":1693780.0,"y1":1.22775777570982E7}
-  ]},
-  {"capacitors":[
+{"feeders":[
+  {"name":"ieee123",
+    "mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507",
+    "substation":"IEEE123",
+    "substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022",
+    "subregion":"Medium",
+    "subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224",
+    "region":"IEEE",
+    "regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43",
+    "swing_nodes":[
+    {"name":"source","bus":"150","phases":"ABC","nominal_voltage":2401.8,"x1":100.0,"y1":1500.0}
+    ],
+    "synchronousmachines":[
+    ],
+    "capacitors":[
   .......
 
 
 Request CIM Dictionary file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates a dictionary file which maps between the mrid identifiers used by the CIM model and the other names of model objects used by simulators.
 
 - Required: configurationType, parameters[model_id]
@@ -97,48 +110,36 @@ Generates a dictionary file which maps between the mrid identifiers used by the 
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"CIM Dictionary",
-    "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
+    "parameters":{"model_id":"_C1C3E687-6FFD-C753-582B-632A27E28507"}
    }
 
 Response:
 ::
+
   {"feeders":[
-  {"name":"ieee8500",
-  "mRID":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3",
-  "substation":"ieee8500_Substation",
-  "substationID":"_F1E8E479-5FA0-4BFF-8173-B375D25B0AA2",
-  "subregion":"large",
-  "subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D",
-  "region":"ieee",
-  "regionID":"_6F10E278-12DC-9CBB-D2D9-D09582538F8A",
-  "capacitors":[
-  {"name":"capbank0a","mRID":"_A5866105-A527-F682-C982-69807C0E088B","CN1":"r42246","phases":"A","kvar_A":400.0,"kvar_B":0.0,"kvar_C":0.0,"nominalVoltage":12470.0,"nomU":7200.0,"phaseConnection":"Y","grounded":true,"enabled":true,"mode":"reactivePower","targetValue":-50000.0,"targetDeadband":-500000.0,"aVRDelay":100.0,"monitoredName":"cap_3a","monitoredClass":"ACLineSegment","monitoredBus":"q16642","monitoredPhase":"A"},
-  .......
-  ],
-  "regulators":[
-  {"bankName":"FEEDER_REG","size":"3","bankPhases":"ABC","tankName":["feeder_rega","feeder_regb","feeder_regc"],"endNumber":[2,2,2],"endPhase":["A","B","C"],"rtcName":["feeder_rega","feeder_regb","feeder_regc"],"mRID":["_330E7EDE-2C70-8F72-B183-AA4BA3C5E221","_0EBF840D-7BE9-0D81-03A0-315D617ECA27","_BBB3984D-2A67-7E15-0763-635C5B06A348"],"monitoredPhase":["A","B","C"],"TapChanger.tculControlMode":["volt","volt","volt"],"highStep":[32,32,32],"lowStep":[0,0,0],"neutralStep":[16,16,16],"normalStep":[16,16,16],"TapChanger.controlEnabled":[true,true,true],"lineDropCompensation":[false,false,false],"ltcFlag":[true,true,true],"RegulatingControl.enabled":[true,true,true],"RegulatingControl.discrete":[true,true,true],"RegulatingControl.mode":["voltage","voltage","voltage"],"step":[1.0125,1.0125,1.0063],"targetValue":[126.5000,126.5000,126.5000],"targetDeadband":[2.0000,2.0000,2.0000],"limitVoltage":[0.0000,0.0000,0.0000],"stepVoltageIncrement":[0.6250,0.6250,0.6250],"neutralU":[7200.0000,7200.0000,7200.0000],"initialDelay":[15.0000,15.0000,15.0000],"subsequentDelay":[2.0000,2.0000,2.0000],"lineDropR":[0.0000,0.0000,0.0000],"lineDropX":[0.0000,0.0000,0.0000],"reverseLineDropR":[0.0000,0.0000,0.0000],"reverseLineDropX":[0.0000,0.0000,0.0000],"ctRating":[300.0000,300.0000,300.0000],"ctRatio":[1500.0000,1500.0000,1500.0000],"ptRatio":[60.0000,60.0000,60.0000]},
-  .......
-  ],
-  "solarpanels":[
-  ],
-  "batteries":[
-  ],
-  "switches":[
-  {"name":"2002200004641085_sw","mRID":"_F5E6D212-C700-C94A-ED54-E00E8230C19C","CN1":"q14734","CN2":"d5587291-3_int","phases":"ABC","nominalVoltage":12470.0,"normalOpen":false},
-  .......
-  ],
-  "measurements":[  
-    {"name":"RatioTapChanger_VREG2","mRID":"02b818b7-fab3-4529-b3b3-fa7cb026eab9","ConductingEquipment_mRID":"_39BD981D-C57D-49E9-1209-9DF79B93A9EA","Terminal_mRID":"_4082AE8B-FAF3-34A9-26A6-6769C16CF78D","measurementType":"Pos","phases":"A","MeasurementClass":"Discrete","ConductingEquipment_type":"PowerTransformer","ConductingEquipment_name":"VREG2","ConnectivityNode":"190-8593"},
-  {"name":"PowerTransformer_hvmv_sub_Power","mRID":"034241b0-c4f9-4f83-9b65-5dcbeab6b029","ConductingEquipment_mRID":"_B32F64E3-AAD3-FA3F-254B-CF74D12DA290","Terminal_mRID":"_ECDEEB50-1B94-9B13-A797-DED1326D80A5","measurementType":"VA","phases":"B","MeasurementClass":"Analog","ConductingEquipment_type":"PowerTransformer","ConductingEquipment_name":"hvmv_sub","ConnectivityNode":"hvmv_sub_hsb"},
+	{"name":"ieee123",
+	"mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507",
+	"substation":"IEEE123",
+	"substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022",
+	"subregion":"Medium",
+	"subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224",
+	"region":"IEEE",
+	"regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43",
+	"synchronousmachines":[
+	],
+	"capacitors":[
+	{"name":"c83","mRID":"_232DD3A8-9A3C-4053-B972-8A5EB49FD980","CN1":"83","phases":"ABC","kvar_A":200.0,"kvar_B":200.0,"kvar_C":200.0,"nominalVoltage":4160.0,"nomU":4160.0,"phaseConnection":"Y","grounded":true,"enabled":false,"mode":null,"targetValue":0.0,"targetDeadband":0.0,"aVRDelay":0.0,"monitoredName":null,"monitoredClass":null,"monitoredBus":null,"monitoredPhase":null},
+	{"name":"c88a","mRID":"_9A74DCDC-EA5A-476B-9B99-B4FB90DC37E3","CN1":"88","phases":"A","kvar_A":50.0,"kvar_B":0.0,"kvar_C":0.0,"nominalVoltage":4160.0,"nomU":2402.0,"phaseConnection":"Y","grounded":true,"enabled":false,"mode":null,"targetValue":0.0,"targetDeadband":0.0,"aVRDelay":0.0,"monitoredName":null,
 
   .......
   ]
   }]}
 
 Request CIM Feeder Index file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates a list of the feeders available powergrid model data store
 
 - Required: configurationType, parameters[model_id]
@@ -146,21 +147,23 @@ Generates a list of the feeders available powergrid model data store
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
     "configurationType":"CIM Feeder Index",
-    "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
+    "parameters":{"model_id":"_C1C3E687-6FFD-C753-582B-632A27E28507"}
    }
 
 Response:
 ::
+
   {"feeders":[
-  {"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"ieee123_Substation","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"large","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"ieee","regionID":"_24809814-4EC6-29D2-B509-7F8BFB646437"},
-  {"name":"ieee13nodecktassets","mRID":"_5B816B93-7A5F-B64C-8460-47C17D6E4B0F","substationName":"ieee13nodecktassets_Substation","substationID":"_D5B23536-54A7-984E-78F2-B136E9B6380E","subregionName":"test","subregionID":"_C43D4535-5786-01CD-C3C4-69AAC7945AD2","regionName":"ieee","regionID":"_85D8A951-64F2-4787-C922-4AE0AA99A874"},
+{"name":"test9500new","mRID":"_AAE94E4A-2465-6F5E-37B1-3E72183A4E44","substationName":"ThreeSubs","substationID":"_40485321-9B2C-1B8C-EC33-39D2F7948163","subregionName":"Large","subregionID":"_A1170111-942A-6ABD-D325-C64886DC4D7D","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
+{"name":"ieee123","mRID":"_C1C3E687-6FFD-C753-582B-632A27E28507","substationName":"IEEE123","substationID":"_FE44B314-385E-C2BF-3983-3A10C6060022","subregionName":"Medium","subregionID":"_1CD7D2EE-3C91-3248-5662-A43EFEFAC224","regionName":"IEEE","regionID":"_73C512BD-7249-4F50-50DA-D93849B89C43"},
   .......
   ]}
 
 Request Simulation Output Configuration file
-^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Generates file containing objects and properties with measurements avilable in the selected model
 
 - Required: configurationType, parameters[model_id]
@@ -168,13 +171,15 @@ Generates file containing objects and properties with measurements avilable in t
 
 Request: goss.gridappsd.process.request.config
 ::
+
   {
-    "configurationType":"CIM Feeder Index",
-    "parameters":{"model_id":"_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"}
+    "configurationType":"GridLAB-D Simulation Output",
+    "parameters":{"model_id":"_C1C3E687-6FFD-C753-582B-632A27E28507"}
    }
 
 Response:
 ::
+
   {
     "cap_capbank0a": [
       "switchA",
@@ -199,25 +204,181 @@ Response:
     ],.......
 
 
-Request YBus Export Configuration file
-^^^^^^^
-Generates file containing ybus configuration for the selected simulation.  Simulation must be running.
+Request all OpenDSS configuration files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generates all configuration files necessary to run a sumulation using the OpenDSS simulator.  Returns the diretory where all of the configuration files are stored.
 
-- Required: configurationType, parameters[simulation_id]
+- Required: configurationType, parameters[model_id,directory,simulationname,simulation_start_time,simulation_duration,simulation_id,simulation_broker_host,simulation_broker_port]
+- Optional: parameters[i_fraction, p_fraction, z_fraction, load_scaling_factor, schedule_name,solver_method]
 
 Request: goss.gridappsd.process.request.config
 ::
+
+  {
+    "configurationType": "DSS All",
+    "parameters": {
+      "load_scaling_factor": "1.0",
+      "i_fraction": "1.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "p_fraction": "0.0",
+      "simulation_id": "12345",
+      "z_fraction": "0.0",
+      "simulation_broker_host": "localhost",
+      "simulation_name": "ieee8500",
+      "simulation_duration": "60",
+      "simulation_start_time": "1518958800",
+      "solver_method": "NR",
+      "schedule_name": "ieeezipload",
+      "simulation_broker_port": "61616",
+      "directory": "/tmp/dsssimulation/"
+    }
+  }
+
+Response:
+<directory where files have been stored>
+  
+  
+Request OpenDSS Base File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generates the main GLM file required by the OpenDSS simulator
+
+- Required: configurationType, parameters[model_id]
+- Optional: parameters[simulation_id, i_fraction, p_fraction, z_fraction, load_scaling_factor, schedule_name]
+
+Request:  goss.gridappsd.process.request.config
+::
+
+  {
+    "configurationType": "DSS Base",
+    "parameters": {
+      "i_fraction": "1.0",
+      "z_fraction": "0.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "load_scaling_factor": "1.0",
+      "schedule_name": "ieeezipload",
+      "p_fraction": "0.0"
+    }
+  }
+  
+Response:
+::
+
+  clear
+  new Circuit.source phases=3 bus1=150 basekv=4.160 pu=1.00000 angle=0.00000 r0=0.00000 x0=0.00010 r1=0.00000 x1=0.00010
+  new Linecode.11 nphases=1 units=mi rmatrix=[1.32920 ] xmatrix=[1.34750 ] cmatrix=[11.9873 ]
+  new Linecode.1 nphases=3 units=mi rmatrix=[0.457600 | 0.156000 0.466600 | 0.153500 0.158000 0.461500 ] xmatrix=[1.07800 | 0.501700 1.04820 | 0.384900 0.423600 1.06510 ] cmatrix=[15.0567 | -4.85904 15.8641 | -1.85195 -3.08879 14.3156 ]
+
+
+  .......
+
+Request OpenDSS Coordinates File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generates the symbols file with XY coordinates used by the OpenDSS simulator
+
+- Required: configurationType, parameters[model_id]
+- Optional: parameters[simulation_id]
+
+Request:  goss.gridappsd.process.request.config
+::
+
+  {
+    "configurationType": "DSS Coordinate",
+    "parameters": {
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
+    }
+  }
+  
+Response:
+::
+
+88,2950.0,1300.0
+89,2775.0,1125.0
+197,3525.0,2200.0
+110,4275.0,3050.0
+111,4275.0,3625.0
+112,4275.0,2925.0
+113,4800.0,2925.0
+114,5125.0,2925.0
+90,2775.0,900.0
+61s,3175.0,1300.0
+91,2550.0,1125.0
+92,2550.0,825.0
+93,2325.0,1125.0
+94,2325.0,850.0
+95,2025.0,1125.0
+96,2025.0,925.0
+97,3525.0,2100.0
+98,3800.0,2100.0
+10,1450.0,2150.0
+99,4350.0,2100.0
+11,950.0,2150.0
+  .......
+
+
+
+
+Request YBus Export Configuration file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generates file containing ybus configuration for the given model or simulation.
+
+Request: goss.gridappsd.process.request.config
+
+::
+
   {
     "configurationType":"YBus Export",
     "parameters":{"simulation_id":"12345"}
     }
+	
+If requested for a simulation then simulation id is mandatory.
+Otherwise use model_id as mentioned next.	
+
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507"
+		}
+	}
+
+Additional paramters can be provided with model_id as mentioned in next request. 
+  
+::
+
+    {
+    "configurationType": "YBus Export",
+    "parameters": {
+      "i_fraction": "1.0",
+      "z_fraction": "0.0",
+      "model_id": "_C1C3E687-6FFD-C753-582B-632A27E28507",
+      "load_scaling_factor": "1.0",
+      "schedule_name": "ieeezipload",
+      "p_fraction": "0.0"
+    }
+  }
 
 Response:
 ::
+
   {
-    yParseFilePath":"/tmp/gridappsd_tmp/1129698954/base_ysparse.csv",
-    "nodeListFilePath":"/tmp/gridappsd_tmp/1129698954/base_nodelist.csv",
-    "summaryFilePath":"/tmp/gridappsd_tmp/1129698954/base_summary.csv"
-  }
-
-
+        "yParse": [
+            "Row,Col,G,B",
+            "1,1,517.6253721,-539.2591296",
+            "2,1,-3.438703156,9.070554234",
+            "3,1,-5.837170999,11.07061383",
+            "4,1,-500,500",
+            "84,1,-9.232329792,20.56428834",
+            "85,1,1.801223903,-4.751238599",
+            "86,1,3.057563114,-5.798887966"
+	    ..........
+		],
+		"nodeList": [
+		  "\"97.1\"",
+		  "\"97.2\"",
+		..........
+		],
+		"summary": [
+		   "DateTime, .......
+		]
+	}
