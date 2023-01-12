@@ -374,6 +374,41 @@ Example Response:
 	
 
 
+Insert All Houses
+^^^^^
+Inserts houses for all of the models passed into the modelList parameter, or in the modelhouses one or all models.
+
+Allowed parameters are:
+
+- modelList  (optional)  - when specified it searches against that model, if empty it will search against all models
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "INSERT_ALL_HOUSES",
+		"modelList": [ 
+		      {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500", "region":3,"scale":0.8,"seed":0},
+                      {"modelId": "_AAE94E4A-2465-6F5E-37B1-3E72183A4E44", "modelName":"ieee9500", "region":3,"scale":0.8,"seed":0} ]
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+
+
+
+
+
 
 
 
