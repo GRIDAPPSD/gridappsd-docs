@@ -373,14 +373,13 @@ Example Response:
 	 ]
 	
 
-
-Insert All Houses
+Insert Houses for multiple models
 ^^^^^
-Inserts houses for all of the models passed into the modelList parameter, or in the modelhouses one or all models.
+Inserts houses for all of the models passed into the modelList parameter, or if no list is supplied then for the models in the static list on the server.
 
 Allowed parameters are:
 
-- modelList  (optional)  - when specified it searches against that model, if empty it will search against all models
+- modelList  (optional)  - when specified it generates houses in the powergrid data store for each of the models supplied with the house generation parameters (modelId, modelName, region, scale, seed)
 
 Example Request:  goss.gridappsd.process.request.data.powergridmodel
 ::
@@ -405,9 +404,210 @@ Python API function:
 
 
 
+Insert Houses for a single model
+^^^^^
+Inserts houses for the model passed into the model parameter.
+
+Allowed parameters are:
+
+- model  - when specified it generates houses for the model supplied with the house generation parameters (modelId, modelName, region, scale, seed). 
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "INSERT_HOUSES",
+		"model": {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500", "region":3,"scale":0.8,"seed":0}
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+Drop Houses for multiple models
+^^^^^
+Deletes houses for all of the models passed into the modelList parameter, or if no list is supplied then for the models in the static list on the server.
+
+Allowed parameters are:
+
+- modelList  (optional)  - when specified it generates houses in the powergrid data store for each of the models supplied
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "DROP_ALL_HOUSES",
+		"modelList": [ 
+		      {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500"},
+                      {"modelId": "_AAE94E4A-2465-6F5E-37B1-3E72183A4E44", "modelName":"ieee9500"} ]
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
 
 
 
+Drop Houses for a single model
+^^^^^
+Deletes houses for the model passed into the modelId parameter.
+
+Allowed parameters are:
+
+- modelId  - when specified it deletes houses for the model id supplied. 
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "DROP_HOUSES",
+		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+
+Insert Measurments for multiple models
+^^^^^
+Inserts measurements for all of the models passed into the modelList parameter, or if no list is supplied then for the models in the static list on the server.
+
+Allowed parameters are:
+
+- modelList  (optional)  - when specified it generates measurements in the powergrid data store for each of the models supplied with the house generation parameters (modelId, modelName)
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "INSERT_ALL_MEASUREMENTS",
+		"modelList": [ 
+		      {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500"},
+                      {"modelId": "_AAE94E4A-2465-6F5E-37B1-3E72183A4E44", "modelName":"ieee9500"} ]
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+
+Insert Measurments for a single model
+^^^^^
+Inserts measurements for the model passed into the model parameter.
+
+Allowed parameters are:
+
+- model  - when specified it generates measurements for the model supplied with the house generation parameters (modelId, modelName). 
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "INSERT_MEASUREMENTS",
+		"model": {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500"}
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+Drop Measurments for multiple models
+^^^^^
+Deletes measurements for all of the models passed into the modelList parameter, or if no list is supplied then for the models in the static list on the server.
+
+Allowed parameters are:
+
+- modelList  (optional)  - when specified it generates measurements in the powergrid data store for each of the models supplied
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "DROP_ALL_MEASUREMENTS",
+		"modelList": [ 
+		      {"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3", "modelName":"ieee8500"},
+                      {"modelId": "_AAE94E4A-2465-6F5E-37B1-3E72183A4E44", "modelName":"ieee9500"} ]
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
+
+
+
+Drop Measurements for a single model
+^^^^^
+Deletes measurements for the model passed into the modelId parameter.
+
+Allowed parameters are:
+
+- modelId  - when specified it deletes measurements for the model id supplied. 
+
+Example Request:  goss.gridappsd.process.request.data.powergridmodel
+::
+
+	{
+		"requestType": "DROP_MEASUREMENTS",
+		"modelId": "_4F76A5F9-271D-9EB8-5E31-AA362D86F2C3"
+	}
+
+
+Example Response:
+::
+	true
+	
+	
+Python API function:
+::
+
+.. note:: Future Capability. Not yet available.
 
 
 
