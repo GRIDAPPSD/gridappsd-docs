@@ -27,7 +27,7 @@ Example Request:
 ::
 	
 	"simulation_config": {
-		"start_time": "2009-07-21 00:00:00",
+		"start_time": "1248134400",
 		"duration": "120",
 		"simulator": "GridLAB-D",
 		"timestep_frequency": "1000",

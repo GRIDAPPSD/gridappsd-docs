@@ -65,7 +65,7 @@ The python API requires that you install the stomp.py package, you can do this u
       gossConnection.subscribe(goss_output_topic,1)
 
   def _startSimulation(username,password,gossServer='localhost',stompPort='61613'):
-      simulationCfg = '{"power_system_config":{"GeographicalRegion_name":"ieee8500nodecktassets_Region","SubGeographicalRegion_name":"ieee8500nodecktassets_SubRegion","Line_name":"ieee8500"}, "simulation_config":{"start_time":"03/07/2017 00:00:00","duration":"60","simulator":"GridLAB-D","simulation_name":"my test simulation","power_flow_solver_method":"FBS"}}'
+      simulationCfg = '{"power_system_config":{"GeographicalRegion_name":"ieee8500nodecktassets_Region","SubGeographicalRegion_name":"ieee8500nodecktassets_SubRegion","Line_name":"ieee8500"}, "simulation_config":{"start_time":"1248134400","duration":"60","simulator":"GridLAB-D","simulation_name":"my test simulation","power_flow_solver_method":"FBS"}}'
       if (gossServer == None or gossServer == ''
               or type(gossServer) != str):
           raise ValueError(

@@ -41,8 +41,7 @@ The request simulation can be called using the GOSS Client API. https://github.c
 	simulationConfig.simulation_id = ""; //.setSimulation_name("");
 	simulationConfig.simulator = ""; //.setSimulator("");
 			
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	simulationConfig.start_time = sdf.format(new Date()); //.setStart_time("");
+	simulationConfig.start_time = new Date().getTime(); //.setStart_time(1248134400);
 			
 	RequestSimulation requestSimulation = new RequestSimulation(powerSystemConfig, simulationConfig);
 			
